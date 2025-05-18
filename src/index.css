@@ -22,10 +22,15 @@
 }
 .banner-4 {
   @apply px-5  pt-5 md:pt-10 3xl:px-36 2xl:px-36 xl:px-28 lg:px-24 md:px-16;
+  background-image: url("./assets/kosaGuma.png");
   background-color: #ff0202;
-  background-size: 100%;
+  background-size: auto;
   background-repeat: no-repeat;
   background-position: center;
+}
+.banner-5 {
+  @apply px-5 py-10 pt-5 md:pt-10 3xl:px-36 2xl:px-36 xl:px-28 lg:px-24 md:px-16;
+  background-color: #ff0202;
 }
 .bg-yellowis {
   background-color: #ffddbf;
@@ -62,4 +67,22 @@
   .h-850 {
     height: 900px;
   }
+}
+
+:root {
+  background-color: #242424;
+}
+
+.carousel {
+  --vc-pgn-background-color: rgba(255, 255, 255, 0.7);
+  --vc-pgn-active-color: rgba(255, 255, 255, 1);
+  --vc-nav-background: rgba(255, 255, 255, 0.7);
+  --vc-nav-border-radius: 100%;
+}
+
+img {
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

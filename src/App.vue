@@ -142,86 +142,104 @@
     </div>
   </div>
 
-  <div class="banner-1" id="testimonial">
-    <div class="space-y-4 grid place-items-center mt-5">
-      <h3 class="heading3">Riječi naših kupaca</h3>
-      <p class="font-work_sans text-gray-600 font-semibold leading-relaxed">
-        Samo dio uske selekcije komentara naših zadovoljnih kupaca
-      </p>
-    </div>
-    <div class="max-w-6xl mx-auto px-8 py-16">
-      <div class="relative">
-        <div class="relative lg:flex rounded-lg shadow-2xl overflow-hidden">
-          <div
-            class="h-56 lg:h-auto lg:w-5/12 relative flex items-center justify-center"
-          >
-            <img
-              class="absolute h-full w-full object-cover"
-              src="./assets/srecan.jpg"
-              alt=""
-            />
-            
-          </div>
-          <div class="relative lg:w-7/12 bg-white">
-            <svg
-              class="absolute h-full text-white w-24 -ml-12"
-              fill="currentColor"
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-            >
-              <polygon points="50,0 100,0 50,100 0,100" />
-            </svg>
+  <div class="banner-5" id="testimonial">
+    <div class="bg-white py-5" style="border-radius: 54px;">
+      <div class="space-y-4 grid place-items-center mt-5">
+        <h3 class="heading3">Riječi naših kupaca</h3>
+        <p class="font-work_sans text-gray-600 font-semibold leading-relaxed">
+          Samo dio uske selekcije komentara naših zadovoljnih kupaca
+        </p>
+      </div>
+      <div class="max-w-6xl mx-auto px-8 py-16">
+        <!--
+        <div class="relative">
+          <div class="relative lg:flex rounded-lg shadow-2xl overflow-hidden">
             <div
-              class="relative py-12 lg:py-24 px-8 lg:px-16 text-gray-700 leading-relaxed"
+              class="h-56 lg:h-auto lg:w-5/12 relative flex items-center justify-center"
             >
-              <p>
-                Supeeeeeeeeeeeeeeeeerrrrrrr
-                <strong class="text-gray-900 font-medium">Slack</strong> grows
-                rapidly, using Stripe helps them scale payments easily &mdash;
-                supporting everything from getting paid by users around the
-                world to enabling ACH payments for corporate customers.
-              </p>
-              <p class="mt-6">
-                <a
-                  href="#"
-                  class="font-medium text-indigo-600 hover:text-indigo-900"
-                >
-                  &rarr; Milorad Dodik</a
-                >
-              </p>
+              <img
+                class="absolute h-full w-full object-cover"
+                src="./assets/srecan.jpg"
+                alt=""
+              />
+              
+            </div>
+            <div class="relative lg:w-7/12 bg-white">
+              <svg
+                class="absolute h-full text-white w-24 -ml-12"
+                fill="currentColor"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+              >
+                <polygon points="50,0 100,0 50,100 0,100" />
+              </svg>
+              <div
+                class="relative py-12 lg:py-24 px-8 lg:px-16 text-gray-700 leading-relaxed"
+              >
+                <p>
+                  Supeeeeeeeeeeeeeeeeerrrrrrr
+                  <strong class="text-gray-900 font-medium">Slack</strong> grows
+                  rapidly, using Stripe helps them scale payments easily &mdash;
+                  supporting everything from getting paid by users around the
+                  world to enabling ACH payments for corporate customers.
+                </p>
+                <p class="mt-6">
+                  <a
+                    href="#"
+                    class="font-medium text-indigo-600 hover:text-indigo-900"
+                  >
+                    &rarr; Milorad Dodik</a
+                  >
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="absolute inset-y-0 left-0 lg:flex lg:items-center">
-          <button
-            class="mt-24 lg:mt-0 -ml-6 h-12 w-12 rounded-full bg-white p-3 shadow-lg"
-          >
-            <svg
-              class="h-full w-full text-indigo-900"
-              fill="currentColor"
-              viewBox="0 0 24 24"
+          <div class="absolute inset-y-0 left-0 lg:flex lg:items-center">
+            <button
+              class="mt-24 lg:mt-0 -ml-6 h-12 w-12 rounded-full bg-white p-3 shadow-lg"
             >
-              <path
-                d="M5.41 11H21a1 1 0 0 1 0 2H5.41l5.3 5.3a1 1 0 0 1-1.42 1.4l-7-7a1 1 0 0 1 0-1.4l7-7a1 1 0 0 1 1.42 1.4L5.4 11z"
-              />
-            </svg>
-          </button>
-        </div>
-        <div class="absolute inset-y-0 right-0 lg:flex lg:items-center">
-          <button
-            class="mt-24 lg:mt-0 -mr-6 h-12 w-12 rounded-full bg-white p-3 shadow-lg"
-          >
-            <svg
-              class="h-full w-full text-indigo-900"
-              fill="currentColor"
-              viewBox="0 0 24 24"
+              <svg
+                class="h-full w-full text-indigo-900"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M5.41 11H21a1 1 0 0 1 0 2H5.41l5.3 5.3a1 1 0 0 1-1.42 1.4l-7-7a1 1 0 0 1 0-1.4l7-7a1 1 0 0 1 1.42 1.4L5.4 11z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="absolute inset-y-0 right-0 lg:flex lg:items-center">
+            <button
+              class="mt-24 lg:mt-0 -mr-6 h-12 w-12 rounded-full bg-white p-3 shadow-lg"
             >
-              <path
-                d="M18.59 13H3a1 1 0 0 1 0-2h15.59l-5.3-5.3a1 1 0 1 1 1.42-1.4l7 7a1 1 0 0 1 0 1.4l-7 7a1 1 0 0 1-1.42-1.4l5.3-5.3z"
-              />
-            </svg>
-          </button>
+              <svg
+                class="h-full w-full text-indigo-900"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M18.59 13H3a1 1 0 0 1 0-2h15.59l-5.3-5.3a1 1 0 1 1 1.42-1.4l7 7a1 1 0 0 1 0 1.4l-7 7a1 1 0 0 1-1.42-1.4l5.3-5.3z"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
+      -->
+      <Carousel v-bind="config">
+        <Slide v-for="image in images" :key="image.id">
+          <div class="carousel__item">
+            <img :src="image.url" alt="image" />
+          </div>
+        </Slide>
+
+        <template #addons>
+          <Navigation />
+          <Pagination />
+        </template>
+      </Carousel>
+
+
       </div>
     </div>
   </div>
@@ -233,15 +251,15 @@
     </iframe>
 
     <div class="space-y-5 py-8 px-8 md:py-16 md:px-20 md:w-1/2">
-      <h4 class="project-title item">Ko smo mi</h4>
-      <p class="font-work_sans">Mi smo ti i ti radimo 100 godina.
+      <h4 class="project-title item " style="color: white;">Ko smo mi</h4>
+      <p class="font-work_sans" style="color: white;">Mi smo ti i ti radimo 100 godina.
         <br />
         I got featured various times on many big and small marketplaces,
         portfolio websites and blogs. I also received some awards and
         recognitions from some of the big and small award companies. Besides
         designing, I like to watch anime, read books and solve sudoku.
       </p>
-      <button class="text-sky-800 font-bold text-2xl tracking-wider">
+      <button class="text-sky-800 font-bold text-2xl tracking-wider" style="color: white;">
         View Case Study
       </button>
     </div>
@@ -344,12 +362,36 @@
 
 <script setup>
   import {ref,onMounted} from 'vue';
-  const map = ref(null);
-  onMounted(() => {
-    new window.google.maps.Map(map.value, {
-      center: {lat: 45, lng: 45},
-      zoom: 10
-    })
-  })
+  import { Carousel, Pagination, Navigation, Slide } from 'vue3-carousel'
+  import 'vue3-carousel/carousel.css'
+
+  
+  const images = [
+    {
+      url: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+    },
+    {
+      url: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+    },
+    {
+      url: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+    },
+    {
+      url: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+    }
+  ];
+/*
+  const files = require.context('@/MalaGalerija', false, );
+
+  const fileNames = files.keys().map(key => key.slice(2));
+  console.log(fileNames);
+*/
+  const config = {
+    height: 200,
+    itemsToShow: 2,
+    gap: 5,
+    mouseWheel: true,
+    wrapAround: true,
+  }
 
 </script>
