@@ -36,7 +36,7 @@
   background-color: #ffddbf;
 }
 .hello-button {
-  background-color: #ffddbf;
+  background-color: #FFFFFF;
 }
 .menu-button {
   @apply 3xl:text-2xl 2xl:text-2xl xl:text-xl lg:text-xl md:text-xl  font-bold font-work_sans hover:text-black;
@@ -53,14 +53,14 @@
 }
 
 .project-title {
-  @apply text-gray-700 text-3xl md:text-4xl font-work_sans tracking-wide font-bold;
+  @apply text-gray-700 text-xl md:text-6xl font-work_sans tracking-wide font-bold;
 }
 
 .card {
   @apply bg-white rounded-2xl md:flex place-items-center my-20 shadow-md;
 }
 .card-image {
-  @apply md:w-1/2 md:rounded-r-2xl md:rounded-l-none rounded-b-2xl flex;
+  @apply md:w-1/2 md:rounded-r-2xl md:rounded-l-none rounded-b-2xl flex bg-gray-600;
 }
 
 @layer utilities {

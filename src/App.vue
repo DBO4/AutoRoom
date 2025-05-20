@@ -55,7 +55,7 @@
           <a
             href="https://www.linkedin.com/"
             target="_blank"
-            class="text-black hover:underline"
+            class="hover:underline"
           >
             </a
           ><br />AutoROOM
@@ -72,18 +72,18 @@
           </button>
         </div>
       </div>
-      <div class="w-8/12 flex justify-center py-5 px-5">
+      <div class="w-8/12 flex justify-center py-5 pl-5">
         
-    <iframe width="1560" height="615" 
-    src="https://www.youtube.com/embed/mDWZ91sId0g?si=1Ygarr0Bdd3pnnHr" 
-    title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-  </iframe>
-</div>
+        <iframe width="1100" height="433" 
+          src="https://www.youtube.com/embed/mDWZ91sId0g?si=1Ygarr0Bdd3pnnHr" 
+          title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>
+      </div>
     </div>
   </div>
 
   <div class="banner-4 space-y-10 pb-20" id="work">
-    <h3 class="heading3 my-5">Dostupni brendovi, roba i usluge</h3>
+    <h3 class="heading3 my-5" style="color: white;">Dostupni brendovi, roba i usluge</h3>
     <div class="card">
       <div class="space-y-5 py-8 px-8 md:py-16 md:px-20 md:w-1/2">
         <h4 class="project-title item">Gume Matador</h4>
@@ -94,7 +94,7 @@
           Pogledajte detaljnije
         </button>
       </div>
-      <div class="card-image bg-green-100 items-center justify-between ">
+      <div class="card-image  items-center justify-between ">
         <img
           class="object-cover w-full border h-72 md:h-96 rounded-xl px-2 py-2"
           src="./assets/Matador.jpg"
@@ -227,9 +227,9 @@
         </div>
       -->
       <Carousel v-bind="config">
-        <Slide v-for="image in images" :key="image.id">
+        <Slide v-for="image in images">
           <div class="carousel__item">
-            <img :src="image.url" alt="image" />
+            <img :src="images.url" :alt=image.url />
           </div>
         </Slide>
 
@@ -365,27 +365,22 @@
   import { Carousel, Pagination, Navigation, Slide } from 'vue3-carousel'
   import 'vue3-carousel/carousel.css'
 
-  
-  const images = [
-    {
-      url: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
-    },
-    {
-      url: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
-    },
-    {
-      url: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
-    },
-    {
-      url: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
-    }
-  ];
-/*
-  const files = require.context('@/MalaGalerija', false, );
+  let i = 0;
+  const images = [ ];
+  const modules = import.meta.glob('./assets/MalaGalerija/*.*');
+  for (const path in modules) {
+      i = i + 1.
+      images.push({url : path, id : i});
+  }
 
-  const fileNames = files.keys().map(key => key.slice(2));
-  console.log(fileNames);
-*/
+  for( const a in images){
+    console.log(images[a].url);
+  }
+
+  onMounted(() => {
+  images
+})
+  
   const config = {
     height: 200,
     itemsToShow: 2,
