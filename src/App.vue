@@ -2,7 +2,7 @@
   <div class="banner-1">
     <!-- NavBar -->
     <nav
-      class="banner-3 container px-0 mx-auto md:flex md:justify-between md:items-center"
+      class="banner-3 container px-0 mx-auto md:flex md:justify-between rounded-xl md:items-center"
     >
       <div class="items-center justify-between">
         <div class=" w-15 h-15">
@@ -49,7 +49,7 @@
           👋 Pozdrav,
         </h3>
         <h1
-          class="3xl:text-8xl 2xl:text-7xl xl:text-6xl lg:text-4xl md:text-3xl sm:text-3xl text-xl font-Eczar font-bold leading-tight text-gray-700"
+          class="3xl:text-8xl 2xl:text-7xl xl:text-6xl lg:text-4xl md:text-3xl sm:text-3xl text-xl font-Eczar font-bold leading-tight text-white"
         >
           Dobrodošli u
           <a
@@ -267,7 +267,7 @@
 
   <div class="banner-1 flex h-full items-center">
     <div class="w-7/12 p-12">
-      <h2 class="text-gray-700 md:text-6xl text-2xl font-Eczar mb-5 font-bold">
+      <h2 class="text-gray-700 kraj md:text-6xl text-2xl font-Eczar mb-5 font-bold">
         Javite nam se da zajedno izaberemo najbolje gume za vašeg metalnog ljubimca
       </h2>
       <a class="underline text-2xl text-blue-600 font-work_sans"
