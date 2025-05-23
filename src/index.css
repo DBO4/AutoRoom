@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 .banner-1 {
-  @apply px-5  pt-5 md:pt-10 3xl:px-36 2xl:px-36 xl:px-0 lg:px-0 md:px-0;
+  @apply px-5 py-20 md:pt-10 3xl:px-36 2xl:px-36 xl:px-0 lg:px-0 md:px-0;
   background-image: url("./assets/bg.jpg");
 }
 
@@ -17,7 +17,7 @@
   background-position: center;
 }
 .banner-3{
-  @apply px-0  pt-0 md:pt-0 3xl:px-2 2xl:px-0 xl:px-0 lg:px-0 md:px-0;
+  @apply px-0 3xl:px-2 2xl:px-0 xl:px-0 lg:px-0 md:px-0;
   background-color: white;
   background-blend-mode: color;
 }
@@ -29,7 +29,7 @@
   background-position: center;
 }
 .banner-5 {
-  @apply px-5 py-10 pt-5 md:pt-10 3xl:px-36 2xl:px-36 xl:px-28 lg:px-24 md:px-16;
+  /*@apply px-5 py-10 pt-5 md:pt-10 3xl:px-36 2xl:px-36 xl:px-28 lg:px-24 md:px-16;*/
   background-image: url("./assets/bg.jpg");
 }
 .bg-yellowis {
@@ -44,6 +44,12 @@
 }
 
 .submit-button {
+  @apply border-gray-800 border-gray-800 3xl:text-xl 2xl:text-xl lg:text-xl md:text-xl text-xs py-2 px-4  lg:py-4 lg:px-8 rounded-2xl font-work_sans font-semibold;
+  background-color: #E57373;
+  color: #520000;
+}
+
+.submit-button-rad {
   @apply border-gray-800 border-gray-800 3xl:text-xl 2xl:text-xl lg:text-xl md:text-xl text-xs py-2 px-4  lg:py-4 lg:px-8 rounded-2xl font-work_sans font-semibold;
   background-color: #ff0202;
 }
@@ -91,3 +97,5 @@ img {
 .kraj{
   color:#ff0202
 }
+
+

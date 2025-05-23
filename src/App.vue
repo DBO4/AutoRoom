@@ -41,7 +41,7 @@
     </nav>
     <!-- End Navbar -->
 
-    <div class="flex items-center">
+    <div class="flex items-center pt-14">
       <div class="w-11/12 space-y-5 md:space-y-10">
         <h3
           class="hello-button text-gray-700 w-fit md:py-3 md:px-5 py-1 px-2 rounded-lg 3xl:text-3xl 2xl:text-xl lg:text-xl md:text-md text-sm font-semibold font-work_sans"
@@ -62,7 +62,7 @@
         </h1>
 
         <div class="md:flex gap-1 md:gap-10">
-          <button class="text-white bg-gray-800 submit-button hidden md:block">
+          <button class="bg-gray-800 submit-button-rad hidden md:block">
             Pogledajte naš rad
           </button>
           <button
@@ -74,7 +74,7 @@
       </div>
       <div class="w-8/12 flex justify-center py-5 pl-5">
         
-        <iframe width="1100" height="433" 
+        <iframe width="800" height="433" 
           src="https://www.youtube.com/embed/mDWZ91sId0g?si=1Ygarr0Bdd3pnnHr" 
           title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
         </iframe>
@@ -142,7 +142,7 @@
     </div>
   </div>
 
-  <div class="banner-5" id="testimonial">
+  <div class="banner-5 px-10 py-10" id="testimonial">
     <div class="bg-white py-5" style="border-radius: 54px;">
       <div class="space-y-4 grid place-items-center mt-5">
         <h3 class="heading3">Riječi naših kupaca</h3>
@@ -150,87 +150,54 @@
           Samo dio uske selekcije komentara naših zadovoljnih kupaca
         </p>
       </div>
-      <div class="max-w-6xl mx-auto px-8 py-16">
-        <!--
-        <div class="relative">
-          <div class="relative lg:flex rounded-lg shadow-2xl overflow-hidden">
-            <div
-              class="h-56 lg:h-auto lg:w-5/12 relative flex items-center justify-center"
-            >
-              <img
-                class="absolute h-full w-full object-cover"
-                src="./assets/srecan.jpg"
-                alt=""
-              />
-              
-            </div>
-            <div class="relative lg:w-7/12 bg-white">
-              <svg
-                class="absolute h-full text-white w-24 -ml-12"
-                fill="currentColor"
-                viewBox="0 0 100 100"
-                preserveAspectRatio="none"
-              >
-                <polygon points="50,0 100,0 50,100 0,100" />
-              </svg>
-              <div
-                class="relative py-12 lg:py-24 px-8 lg:px-16 text-gray-700 leading-relaxed"
-              >
-                <p>
-                  Supeeeeeeeeeeeeeeeeerrrrrrr
-                  <strong class="text-gray-900 font-medium">Slack</strong> grows
-                  rapidly, using Stripe helps them scale payments easily &mdash;
-                  supporting everything from getting paid by users around the
-                  world to enabling ACH payments for corporate customers.
-                </p>
-                <p class="mt-6">
-                  <a
-                    href="#"
-                    class="font-medium text-indigo-600 hover:text-indigo-900"
-                  >
-                    &rarr; Milorad Dodik</a
-                  >
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="absolute inset-y-0 left-0 lg:flex lg:items-center">
-            <button
-              class="mt-24 lg:mt-0 -ml-6 h-12 w-12 rounded-full bg-white p-3 shadow-lg"
-            >
-              <svg
-                class="h-full w-full text-indigo-900"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M5.41 11H21a1 1 0 0 1 0 2H5.41l5.3 5.3a1 1 0 0 1-1.42 1.4l-7-7a1 1 0 0 1 0-1.4l7-7a1 1 0 0 1 1.42 1.4L5.4 11z"
-                />
-              </svg>
-            </button>
-          </div>
-          <div class="absolute inset-y-0 right-0 lg:flex lg:items-center">
-            <button
-              class="mt-24 lg:mt-0 -mr-6 h-12 w-12 rounded-full bg-white p-3 shadow-lg"
-            >
-              <svg
-                class="h-full w-full text-indigo-900"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M18.59 13H3a1 1 0 0 1 0-2h15.59l-5.3-5.3a1 1 0 1 1 1.42-1.4l7 7a1 1 0 0 1 0 1.4l-7 7a1 1 0 0 1-1.42-1.4l5.3-5.3z"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      -->
+      <div class="px-8 py-2">
       <Carousel v-bind="config">
-        <Slide v-for="image in images">
-          <div class="carousel__item">
-            <img :src="images.url" :alt=image.url />
-          </div>
+        <Slide v-for="image in images" :key="image.id">
+          <!--<div class="carousel__item border-2 border-gray-100 mx-8" id="carousel">
+            <img :src="image.url" :alt="image.ime" id="slika"/>  
+            <div id="ime">{{ image.ime }}</div>
+            <div>{{ image.tekst }}</div>
+          </div>-->
+          <v-card
+            class="mx-auto"
+          >
+            <img
+              :src="image.url"
+            ></img>
+
+            <div >
+              {{image.ime}}
+            </div>
+            <br>
+            <div style="width: 500px;">
+                {{ image.tekst }}
+            </div>
+            <!--
+            <v-card-actions>
+              <v-btn
+                color="orange-lighten-2"
+                text="Explore"
+              ></v-btn>
+
+              <v-spacer></v-spacer>
+
+              <v-btn
+                :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+                @click="show = !show"
+              ></v-btn>
+            </v-card-actions>
+
+            <v-expand-transition>
+              <div v-show="show">
+                <v-divider></v-divider>
+
+                <v-card-text>
+                  I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
+                </v-card-text>
+              </div>
+            </v-expand-transition
+            >-->
+          </v-card>
         </Slide>
 
         <template #addons>
@@ -238,8 +205,6 @@
           <Pagination />
         </template>
       </Carousel>
-
-
       </div>
     </div>
   </div>
@@ -361,32 +326,35 @@
 </template>
 
 <script setup>
-  import {ref,onMounted} from 'vue';
-  import { Carousel, Pagination, Navigation, Slide } from 'vue3-carousel'
-  import 'vue3-carousel/carousel.css'
+import { ref, onMounted } from 'vue';
+import { Carousel, Pagination, Navigation, Slide } from 'vue3-carousel';
+import 'vue3-carousel/carousel.css';
+import RijeciKupaca from './assets/RijeciKupaca.csv?raw';
+const redovi = RijeciKupaca.split('\n');
 
-  let i = 0;
-  const images = [ ];
+const images = ref([]);
+const config = {
+  itemsToShow: 3,
+  gap: 5,
+  mouseWheel: true,
+  wrapAround: true,
+};
+
+onMounted(async () => {
   const modules = import.meta.glob('./assets/MalaGalerija/*.*');
+  let id = 0,rbrCsv,imeCsv,tekstCsv;
+
   for (const path in modules) {
-      i = i + 1.
-      images.push({url : path, id : i});
-  }
-
-  for( const a in images){
-    console.log(images[a].url);
-  }
-
-  onMounted(() => {
-  images
-})
-  
-  const config = {
-    height: 200,
-    itemsToShow: 2,
-    gap: 5,
-    mouseWheel: true,
-    wrapAround: true,
-  }
+    const url = await modules[path]();
+    rbrCsv = redovi[id + 1].split(";")[0];
+    imeCsv = redovi[id + 1].split(";")[1];
+    tekstCsv = redovi[id + 1].split(";")[2];
+    if(rbrCsv == (id + 1)){
+      images.value.push({ url: url.default, id: ++id, ime: imeCsv, tekst: tekstCsv });
+    }
+      else{console.log("rbrcsv = " + rbrCsv + "id = " + id)
+    }
+  }  
+});
 
 </script>
