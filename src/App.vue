@@ -140,6 +140,11 @@
         />
       </div>
     </div>
+    <div class="blog-kont">
+      <div class="centar-blog">
+        Otiđite na naš blog...
+      </div>
+    </div>
   </div>
 
   <div class="banner-5 px-10 py-10" id="testimonial">
@@ -153,51 +158,13 @@
       <div class="px-8 py-2">
       <Carousel v-bind="config">
         <Slide v-for="image in images" :key="image.id">
-          <!--<div class="carousel__item border-2 border-gray-100 mx-8" id="carousel">
+          <div class="carousel__item border-2 border-gray-100 mx-8" style="width: 80%;" id="carousel">
             <img :src="image.url" :alt="image.ime" id="slika"/>  
-            <div id="ime">{{ image.ime }}</div>
-            <div>{{ image.tekst }}</div>
-          </div>-->
-          <v-card
-            class="mx-auto"
-          >
-            <img
-              :src="image.url"
-            ></img>
-
-            <div >
-              {{image.ime}}
+            <div class="px-5 py-3">
+              <div id="ime">{{ image.ime }}</div>
+              <div id="tekst">{{ image.tekst }}</div>
             </div>
-            <br>
-            <div style="width: 500px;">
-                {{ image.tekst }}
-            </div>
-            <!--
-            <v-card-actions>
-              <v-btn
-                color="orange-lighten-2"
-                text="Explore"
-              ></v-btn>
-
-              <v-spacer></v-spacer>
-
-              <v-btn
-                :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
-                @click="show = !show"
-              ></v-btn>
-            </v-card-actions>
-
-            <v-expand-transition>
-              <div v-show="show">
-                <v-divider></v-divider>
-
-                <v-card-text>
-                  I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
-                </v-card-text>
-              </div>
-            </v-expand-transition
-            >-->
-          </v-card>
+          </div>
         </Slide>
 
         <template #addons>
