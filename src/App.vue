@@ -83,20 +83,20 @@
   </div>
 
   <div class="banner-4 space-y-10 pb-20" id="work">
-    <h3 class="heading3 my-5" style="color: white;">Dostupni brendovi, roba i usluge</h3>
+    <h3 class="heading3 my-5" style="color: white;">Pratite blog i pročitajte o dostupnim brendovima, robi i uslugama</h3>
     <div class="card">
       <div class="space-y-5 py-8 px-8 md:py-16 md:px-20 md:w-1/2">
         <h4 class="project-title item">Gume Matador</h4>
         <p class="font-work_sans pr-12">
-          Dizajnirane od strane matadora iz Španije
+          Dizajnirane od strane matadora iz Španije hfiodhsaoifdoisajdoisajd dosajdoisajd  dosajdoisad dsaojdsaojdsa adoasjdosa
         </p>
-        <button class="text-sky-800 font-bold text-2xl tracking-wider">
+        <button class=" submit-button-blog text-sky-800 font-bold text-2xl tracking-wider">
           Pogledajte detaljnije
         </button>
       </div>
       <div class="card-image  items-center justify-between ">
         <img
-          class="object-cover w-full border h-72 md:h-96 rounded-xl px-2 py-2"
+          class="object-cover w-full  h-72 md:h-96 px-2 py-2"
           src="./assets/Matador.jpg"
         />
       </div>
@@ -108,13 +108,13 @@
         <p class="font-work_sans pr-12">
           Ling long ćing ćong
         </p>
-        <button class="text-sky-800 font-bold text-2xl tracking-wider">
+        <button class="submit-button-blog text-sky-800 font-bold text-2xl tracking-wider">
           Više o ovim gumama
         </button>
       </div>
-      <div class="card-image bg-green-100 items-center justify-between ">
+      <div class="card-image items-center justify-between ">
         <img
-          class="object-cover w-full border h-72 md:h-96 rounded-xl px-2 py-2"
+          class="object-cover w-full h-72 md:h-96 px-2 py-2"
           src="./assets/LingLong.jpeg"
         />
       </div>
@@ -129,11 +129,11 @@
           different states using variant modifiers. For example, use hover:gap-6
           to only apply the gap-6 utility
         </p>
-        <button class="text-sky-800 font-bold text-2xl tracking-wider">
+        <button class="submit-button-blog text-sky-800 font-bold text-2xl tracking-wider">
           View Case Study
         </button>
       </div>
-      <div class="card-image bg-green-100">
+      <div class="card-image">
         <img
           class="object-cover w-full h-72 md:h-96"
           src="./assets/project1.png"
@@ -141,9 +141,9 @@
       </div>
     </div>
     <div class="blog-kont">
-      <div class="centar-blog">
+      <button class="centar-blog submit-button-rad">
         Otiđite na naš blog...
-      </div>
+      </button>
     </div>
   </div>
 
