@@ -82,6 +82,8 @@
     </div>
   </div>
 
+  <!--
+
   <div class="banner-4 space-y-10 pb-20" id="work">
     <h3 class="heading3 my-5" style="color: white;">Pratite blog i pročitajte o dostupnim brendovima, robi i uslugama</h3>
     <div class="card">
@@ -140,11 +142,36 @@
         />
       </div>
     </div>
+  -->
+    
+
+  <div class="banner-4 space-y-10 pb-20" id="work">
+    <div v-for="stakva in blog" :key="stakva.idBlog">
+      <div class="card">
+        <div class="space-y-5 py-8 px-8 md:py-16 md:px-20 md:w-1/2">
+          <h4 class="project-title">{{ stakva.naslov }}</h4>
+          <p class="font-work_sans pr-12">
+            {{ stakva.tekst }}
+          </p>
+          <button class="submit-button-blog text-sky-800 font-bold text-2xl tracking-wider">
+            {{stakva.dugme}}
+          </button>
+        </div>
+        <div class="card-image">
+          <img
+            class="object-cover w-full h-72 md:h-96"
+            :src="stakva.url"
+          />
+        </div>
+      </div>
+    </div>
+
     <div class="blog-kont">
-      <button class="centar-blog submit-button-rad">
+      <button class="centar-blog submit-button" style="color: white; background-color: #db3030;">
         Otiđite na naš blog...
       </button>
     </div>
+
   </div>
 
   <div class="banner-5 px-10 py-10" id="testimonial">
@@ -296,10 +323,16 @@
 import { ref, onMounted } from 'vue';
 import { Carousel, Pagination, Navigation, Slide } from 'vue3-carousel';
 import 'vue3-carousel/carousel.css';
+
 import RijeciKupaca from './assets/RijeciKupaca.csv?raw';
+import BlogCsv from './assets/Blog.csv?raw';
+
 const redovi = RijeciKupaca.split('\n');
+const redoviBlog = BlogCsv.split('\n');
 
 const images = ref([]);
+const blog = ref([]);
+
 const config = {
   itemsToShow: 3,
   gap: 5,
@@ -308,6 +341,7 @@ const config = {
 };
 
 onMounted(async () => {
+
   const modules = import.meta.glob('./assets/MalaGalerija/*.*');
   let id = 0,rbrCsv,imeCsv,tekstCsv;
 
@@ -322,6 +356,29 @@ onMounted(async () => {
       else{console.log("rbrcsv = " + rbrCsv + "id = " + id)
     }
   }  
+
+  //////
+
+  const blogSlike = import.meta.glob('./assets/Blog/*.*');
+  let idBlog = 0,rbrBlogCsv,naslovBlogCsv,tekstBlogCsv,dugmeBlogCsv,naslovnaBlogCsv;
+  
+  for (const pathBlog in blogSlike) {
+    const urlBlog = await blogSlike[pathBlog]();
+    rbrBlogCsv = redoviBlog[idBlog + 1].split(";")[0];
+    naslovBlogCsv = redoviBlog[idBlog + 1].split(";")[1];
+    tekstBlogCsv = redoviBlog[idBlog + 1].split(";")[2];
+    dugmeBlogCsv = redoviBlog[idBlog + 1].split(";")[3];
+    naslovnaBlogCsv = redoviBlog[idBlog + 1].split(";")[4];
+    if (rbrBlogCsv == (idBlog + 1)){
+      if (naslovnaBlogCsv.trim() == "D"){
+        blog.value.push({ url: urlBlog.default, id: idBlog, naslov: naslovBlogCsv, tekst: tekstBlogCsv, dugme: dugmeBlogCsv});
+      }
+      ++idBlog;
+    }
+    else{console.log("rbrBlogCsv = " + rbrBlogCsv + "idBlog = " + idBlog);
+    }
+  }
+
 });
 
 </script>
