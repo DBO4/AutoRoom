@@ -41,7 +41,7 @@
     </nav>
     <!-- End Navbar -->
 
-    <div class="flex items-center pt-14">
+    <div class="flex items-center justify-end pt-14">
       <div class="w-11/12 space-y-5 md:space-y-10">
         <h3
           class="hello-button text-gray-700 w-fit md:py-3 md:px-5 py-1 px-2 rounded-lg 3xl:text-3xl 2xl:text-xl lg:text-xl md:text-md text-sm font-semibold font-work_sans"
@@ -81,69 +81,6 @@
       </div>
     </div>
   </div>
-
-  <!--
-
-  <div class="banner-4 space-y-10 pb-20" id="work">
-    <h3 class="heading3 my-5" style="color: white;">Pratite blog i pročitajte o dostupnim brendovima, robi i uslugama</h3>
-    <div class="card">
-      <div class="space-y-5 py-8 px-8 md:py-16 md:px-20 md:w-1/2">
-        <h4 class="project-title item">Gume Matador</h4>
-        <p class="font-work_sans pr-12">
-          Dizajnirane od strane matadora iz Španije hfiodhsaoifdoisajdoisajd dosajdoisajd  dosajdoisad dsaojdsaojdsa adoasjdosa
-        </p>
-        <button class=" submit-button-blog text-sky-800 font-bold text-2xl tracking-wider">
-          Pogledajte detaljnije
-        </button>
-      </div>
-      <div class="card-image  items-center justify-between ">
-        <img
-          class="object-cover w-full  h-72 md:h-96 px-2 py-2"
-          src="./assets/Matador.jpg"
-        />
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="space-y-5 py-8 px-8 md:py-16 md:px-20 md:w-1/2">
-        <h4 class="project-title item">Gume LingLong</h4>
-        <p class="font-work_sans pr-12">
-          Ling long ćing ćong
-        </p>
-        <button class="submit-button-blog text-sky-800 font-bold text-2xl tracking-wider">
-          Više o ovim gumama
-        </button>
-      </div>
-      <div class="card-image items-center justify-between ">
-        <img
-          class="object-cover w-full h-72 md:h-96 px-2 py-2"
-          src="./assets/LingLong.jpeg"
-        />
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="space-y-5 py-8 px-8 md:py-16 md:px-20 md:w-1/2">
-        <h4 class="project-title">Sheepify States</h4>
-        <p class="font-work_sans pr-12">
-          Designed some empty state screens in kawaii style for the popular
-          sheepify app.Tailwind lets you conditionally apply utility classes in
-          different states using variant modifiers. For example, use hover:gap-6
-          to only apply the gap-6 utility
-        </p>
-        <button class="submit-button-blog text-sky-800 font-bold text-2xl tracking-wider">
-          View Case Study
-        </button>
-      </div>
-      <div class="card-image">
-        <img
-          class="object-cover w-full h-72 md:h-96"
-          src="./assets/project1.png"
-        />
-      </div>
-    </div>
-  -->
-    
 
   <div class="banner-4 space-y-10 pb-20" id="work">
     <div v-for="stakva in blog" :key="stakva.idBlog">
@@ -218,25 +155,40 @@
         recognitions from some of the big and small award companies. Besides
         designing, I like to watch anime, read books and solve sudoku.
       </p>
-      <button class="text-sky-800 font-bold text-2xl tracking-wider" style="color: white;">
-        View Case Study
+      <button class="text-sky-800 font-bold text-2xl tracking-wider" style="color: red; text-decoration: underline;">
+        O nama
       </button>
     </div>
   </div>
 
-  <div class="banner-1 flex h-full items-center">
-    <div class="w-7/12 p-12">
-      <h2 class="text-gray-700 kraj md:text-6xl text-2xl font-Eczar mb-5 font-bold">
-        Javite nam se da zajedno izaberemo najbolje gume za vašeg metalnog ljubimca
-      </h2>
-      <a class="underline text-2xl text-blue-600 font-work_sans"
-        >📧 info@autoroom.ba</a
-      >
-      <a class="underline text-2xl text-blue-600 font-work_sans"
-        >📧 +38755588855</a
-      >
+  <div class="banner-1">
+
+    <!--
+    <div class="bg-white py-5" style="border-radius: 54px;">
+      <div class="space-y-4 grid place-items-center" style="font-size: xx-large;">
+        Naši partneri
+      </div>
+
     </div>
-    <div class="w-5/12 pr-28">
+    -->
+
+    <div class=" flex h-full items-center">
+      <div class="w-7/12 p-12">
+      <h2 class="text-white md:text-6xl text-2xl font-Eczar mb-0 font-bold">
+        Javite nam se da zajedno izaberemo najbolje gume za
+      </h2>
+      <h2 class="text-gray-700 kraj md:text-6xl text-2xl font-Eczar mb-5 font-bold">
+        vašeg metalnog ljubimca
+      </h2>
+
+      <a class="underline text-2xl text-white font-work_sans pr-5"
+        >info@autoroom.ba</a
+      >
+      <a class="underline text-2xl text-white font-work_sans"
+        >+38755588855</a
+      >
+      </div>
+      <div class="w-5/12 pr-28">
       <div class="flex flex-wrap justify-end gap-2">
         <button
           class="bg-gray-700 p-2 font-semibold text-white inline-flex items-center space-x-2 rounded"
@@ -314,6 +266,7 @@
             </g>
           </svg>
         </button>
+      </div>
       </div>
     </div>
   </div>
