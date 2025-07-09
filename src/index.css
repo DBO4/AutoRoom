@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Eczar&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+@import url('vuetify/dist/vuetify.min.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .banner-1 {
-  @apply px-5 py-20 md:pt-10 3xl:px-36 2xl:px-36 xl:px-0 lg:px-0 md:px-0;
+  @apply px-5 md:pt-10 3xl:px-36 2xl:px-36 xl:px-0 lg:px-0 md:px-0;
   background-image: url("./assets/bg-30.png");
 }
 
@@ -33,6 +34,12 @@
   /*@apply px-5 py-10 pt-5 md:pt-10 3xl:px-36 2xl:px-36 xl:px-28 lg:px-24 md:px-16;*/
   background-image: url("./assets/bg.jpg");
 }
+
+.banner-6 {
+  @apply px-5 py-20 md:pt-10 3xl:px-36 2xl:px-36 xl:px-0 lg:px-0 md:px-0;
+   background-image: url("./assets/bg-30.png");
+}
+
 .bg-yellowis {
   background-color: #ffddbf;
 }
