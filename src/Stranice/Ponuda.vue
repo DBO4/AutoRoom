@@ -80,6 +80,7 @@
                                 label="Dimenzija A"
                                 :hideInput="false"
                                 :inset="false"
+                                v-model="dimA"
                                 width="200"
                                 class="ma-4"
                                 :max="300"
@@ -92,6 +93,7 @@
                                 label="Dimenzija B"
                                 :hideInput="false"
                                 :inset="false"
+                                v-model="dimB"
                                 width="200"
                                 class="ma-4"
                                 :max="100"
@@ -105,22 +107,24 @@
                                 :hideInput="false"
                                 :inset="false"
                                 width="200"
+                                v-model="dimC"
                                 class="ma-4"
                                 :max="100"
                                 :min="30"
                                 :model-value="50"
                             ></v-number-input>
-                            <v-radio-group inline label="Izaberite vrstu guma">
+                            <v-radio-group inline label="Izaberite vrstu guma" v-model="tip">
                                 <v-radio color="red" label="Zimske" value="Zimske"></v-radio>
                                 <v-radio color="red" label="Ljetne" value="Ljetne"></v-radio>
                                 <v-radio color="red" value="M+S" label="M+S"></v-radio>
                             </v-radio-group>                        
                         </div>
+                        </div>
                         <div class="px-11 pb-10">
                             <h3 class="text-h6" style="text-align: left;">
                                 Dodatna napomena:
                             </h3>
-                            <v-textarea label="Ovde upišite sve dodatne detalje npr. brend koji favorizujete, specifičnu dimenziju koju niste našli, gume za druga vozila (osim automobila)..." variant="outlined"></v-textarea>
+                            <v-textarea v-model="nap" label="Ovde upišite sve dodatne detalje npr. brend koji favorizujete, specifičnu dimenziju koju niste našli, gume za druga vozila (osim automobila)..." variant="outlined"></v-textarea>
                         </div>
                         <h3 class="text-h5">
                             Izaberite vrstu komunikacije i popunite polja sa kontakt informacijama da Vas možemo kontaktirati
@@ -152,10 +156,11 @@
                                rounded="xl" 
                                size="x-large"
                                color="success"
+                               class="ma-5"
                                @click="ZatraziPonudu()" >
                             Zatraži ponudu
                         </v-btn>
-                </div>
+                
             </v-sheet>
     </v-expand-transition>
   </v-sheet>
@@ -170,10 +175,9 @@
 
 
 <script setup>
-  import { ref, onMounted } from 'vue'
-  import SvgIcon from '@jamescoyle/vue-icon';
-  import { mdiAccount } from '@mdi/js';
+  import { ref, onMounted } from 'vue';
   import Kategorije from '../assets/TekstFajlovi/Kategorije.csv?raw';
+  import axios from 'axios';
 
   const model = ref(null);
   const images = ref([]);
@@ -185,10 +189,15 @@
     counter: value => value.length <= 20 || 'Max 20 characters',
     email: value => {
     const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    return pattern.test(value) || 'Invalid e-mail.'
+    return pattern.test(value) || 'Nevažeći e-mail.'
     },
   }
   const komunikacija = ref("email");
+  const dimA = ref(150);
+  const dimB = ref(50);
+  const dimC = ref(50);
+  const tip = ref();
+  const nap = ref("");
   const brtel = ref(null);
   const email = ref("");
 
@@ -212,7 +221,16 @@
   }
 
   function ZatraziPonudu(){
-    console.log("adwasdas");
+    axios
+      .get("http://localhost:3000/mejl.php?email=" + email.value + "&brtel=" + brtel.value + "&kanal=" + komunikacija.value + "&dimA=" + dimA.value + "&dimB=" + dimB.value + "&dimC=" + dimC.value + "&tip=" + tip.value + "&nap=" + nap.value + "&model=" + model.value)
+      .then(function (response) {
+        console.log(response.data);
+        if (response.data.error) {
+          this.errorMsg = response.data.message;
+        } else {
+          this.projects = response.data.projects;
+        }
+      });
   }
 
 </script>
