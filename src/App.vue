@@ -29,7 +29,7 @@
       </div>
       <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
       <ul
-        class="flex-col items-end mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0 px-10"
+        class="flex-col items-end  space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 px-10"
       >
         <li class="menu-button"><a href="#" @click="Pocetna()">Početna</a></li>
         <li class="menu-button"><a href="#work" v-smooth-scroll>Naš rad</a></li>

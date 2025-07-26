@@ -52,7 +52,7 @@
 }
 
 .submit-button {
-  @apply border-gray-800 border-gray-800 3xl:text-xl 2xl:text-xl lg:text-xl md:text-xl text-xs py-2 px-4  lg:py-4 lg:px-8 rounded-2xl font-work_sans font-semibold;
+  @apply  3xl:text-xl 2xl:text-xl lg:text-xl md:text-xl text-xs  lg:py-4 lg:px-8 rounded-2xl font-work_sans font-semibold;
   background-color: #E57373;
   color: #520000;
 }
@@ -95,9 +95,9 @@
 }
 
 .carousel {
-  --vc-pgn-background-color: rgba(255, 255, 255, 0.7);
-  --vc-pgn-active-color: rgba(255, 255, 255, 1);
-  --vc-nav-background: rgba(255, 255, 255, 0.7);
+  --vc-pgn-background-color: rgba(255, 255, 255, 0.104);
+  --vc-pgn-active-color: rgba(255, 255, 255, 104);
+  --vc-nav-background: rgba(255, 255, 255, 0.164);
   --vc-nav-border-radius: 100%;
 }
 

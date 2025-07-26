@@ -10,34 +10,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-$email = $_GET['email'];
-$brtel = $_GET['brtel'];
-$kanal = $_GET['kanal'];
-$dimA = $_GET['dimA'];
-$dimB = $_GET['dimB'];
-$dimC = $_GET['dimC'];
-$tip = $_GET['tip'];
-$nap = $_GET['nap'];
-$model = $_GET['model'];
-$modelTekst = "";
-$prefKanal = "";
 
-if ($model == 0 || $model == "0"){
-    $modelTekst = "Gume";
-}
-
-$tekst = "Ponuda zatražena za " . $modelTekst . "<br><br>Podaci:<br>"
-. "Dimenzije: " . $dimA . "/" . $dimB . "/" . $dimC . " - " . $tip . 
-"<br>Napomena: " . $nap . 
-"<br>Kontakt: " . $kanal . " - ";
-
-if ($kanal == "email"){
-    $tekst = $tekst . $email;
-} else {
-    $tekst = $tekst . $brtel;
-}
-
-echo $tekst;
 //echo "AAAAAAAAAA";
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
@@ -76,7 +49,7 @@ try {
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = "Potraznja ponude #421";
+    $mail->Subject = "Potraznja ponude";
     $mail->Body    = $tekst;
     //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 

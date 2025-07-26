@@ -1,47 +1,76 @@
 <template>
   <div class="banner-6">
-    <div class="flex items-center justify-end pt-14">
-      <div class="w-11/12 space-y-5 md:space-y-10">
-        <h3
-          class="hello-button text-gray-700 w-fit md:py-3 md:px-5 py-1 px-2 rounded-lg 3xl:text-3xl 2xl:text-xl lg:text-xl md:text-md text-sm font-semibold font-work_sans"
-        >
-          👋 Pozdrav,
-        </h3>
-        <h1
-          class="3xl:text-8xl 2xl:text-7xl xl:text-6xl lg:text-4xl md:text-3xl sm:text-3xl text-xl font-Eczar font-bold leading-tight text-white"
-        >
-          Dobrodošli u
-          <a
-            href="https://www.linkedin.com/"
-            target="_blank"
-            class="hover:underline"
+    <div class="flex items-center">
+      <div class="w-11/12 ">
+        <div class ="align-center justify-center d-flex">
+          <div class="ma-8 px-5">
+            <iframe width="490" height="900"
+              class="border-2 border-gray-100" 
+              src="src\assets\videoDejo.mp4" 
+              title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+          </div>
+          <h1
+            class="3xl:text-8xl 2xl:text-7xl xl:text-6xl lg:text-4xl md:text-3xl sm:text-3xl text-xl font-Eczar font-bold leading-tight text-white"
+            style="font-size: 10rem;"
           >
-            </a
-          ><br />AutoROOM
-        </h1>
-
-        <div class="md:flex gap-1 md:gap-10">
-          <button class="bg-gray-800 submit-button-rad hidden md:block">
-            Pogledajte naš rad
-          </button>
-          <button
-            class="text-gray-800 border-4 border-gray-800 submit-button mb-5 md:mb-0"
-          >
-            Kontaktirajte nas
-          </button>
+           <h3
+              class="hello-button text-gray-700 w-fit md:py-3 my-4 md:px-5 py-4 px-2 rounded-lg font-semibold font-work_sans"
+              style="font-size: 6rem;"
+            >
+              👋 Pozdrav,
+            </h3>
+            Dobrodošli u
+            <a
+              href="https://www.linkedin.com/"
+              target="_blank"
+              class="hover:underline"
+            >
+              </a
+            ><br />AutoROOM
+              <div class="md:flex gap-1 md:gap-10">
+                <button class="bg-gray-800 submit-button-rad hidden md:block" style="font-size: 2rem;">
+                  Pogledajte naš rad
+                </button>
+                <button
+                  class="text-gray-800 submit-button " style="font-size: 2rem;">
+                  Kontaktirajte nas
+                </button>
+            </div>
+          </h1>
         </div>
-      </div>
-      <div class="w-8/12 flex justify-center py-5 pl-5">
-        
-        <iframe width="800" height="433" 
-          src="https://www.youtube.com/embed/mDWZ91sId0g?si=1Ygarr0Bdd3pnnHr" 
-          title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-        </iframe>
       </div>
     </div>
   </div>
 
   <div class="banner-4 space-y-10 pb-20" id="work">
+    <div class=" py-5 " style="border-radius: 54px; border-width: 15px; border-color:red; background-image: url('src/assets/tragovi.jpg'); background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;">
+      <div class="space-y-4 grid place-items-center my-5">
+        <h4 class="heading3">***Trenutne akcije***</h4>
+      </div>
+      <Carousel v-bind="configAkcije">
+          <Slide v-for="image in slikeAkcije" :key="image.id" >
+            <div class="carousel__item border-2 border-red-800 mx-2 bg-white"id="carousel" >
+              <img :src="image.url" :alt="image.ime" id="slika" style="max-height:270px; width: 500px; border-color: red; border-width: 5px;"/>  
+              <div class="px-2 py-1">
+                <div id="ime">{{ image.ime }}</div>
+                <div id="tekst" >{{ image.tekst }}</div>
+                <div id="cijena" style=" color: gold; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: 600; font-size:x-large; background-color: crimson; text-align: center; border-radius: 15%;">{{ image.cijena }} KM</div>
+                <div class ="align-center justify-center d-flex pa-4">
+                  <v-btn rounded="xl" size="small" @click="naruciAkciju(image.id)" block>Naruči</v-btn>
+                </div>
+              </div>
+            </div>
+          </Slide>
+
+          <template #addons>
+            <Navigation />
+            <Pagination />
+          </template>
+        </Carousel>
+      </div>
     <div v-for="stakva in blog" :key="stakva.idBlog">
       <div class="card">
         <div class="space-y-5 py-8 px-8 md:py-16 md:px-20 md:w-1/2">
@@ -225,23 +254,34 @@
 import { ref, onMounted } from 'vue';
 import { Carousel, Pagination, Navigation, Slide } from 'vue3-carousel';
 import 'vue3-carousel/carousel.css';
-
+import { useRouter } from 'vue-router';
 import RijeciKupaca from '../assets/TekstFajlovi/RijeciKupaca.csv?raw';
 import BlogCsv from '../assets/TekstFajlovi/Blog.csv?raw';
-import { RouterView } from 'vue-router';
+import Akcije from '../assets/TekstFajlovi/Akcije.csv?raw';
 
 const redovi = RijeciKupaca.split('\n');
 const redoviBlog = BlogCsv.split('\n');
-
+const redoviAkcija = Akcije.split('\n');
+const router = useRouter();
 const images = ref([]);
 const blog = ref([]);
-
+const slikeAkcije = ref([]);
 const config = {
   itemsToShow: 3,
   gap: 5,
   mouseWheel: true,
   wrapAround: true,
 };
+const configAkcije = {
+  itemsToShow: 6,
+  gap: 0,
+  mouseWheel: true,
+  wrapAround: true,
+};
+
+const props = defineProps({
+  id: String
+})
 
 onMounted(async () => {
 
@@ -282,6 +322,28 @@ onMounted(async () => {
     }
   }
 
+  /////////////////////////
+
+  const moduliAkcija = import.meta.glob('../assets/Slike/Akcije/*.*');
+  let idAkcije = 0,rbrAkcijeCsv,imeAkcijeCsv,tekstAkcijeCsv,cijenaAkcijaCsv;
+
+  for (const pathAkcija in moduliAkcija) {
+    const urlAkcija = await moduliAkcija[pathAkcija]();
+    rbrAkcijeCsv = redoviAkcija[idAkcije + 1].split(";")[0];
+    imeAkcijeCsv = redoviAkcija[idAkcije + 1].split(";")[1];
+    tekstAkcijeCsv = redoviAkcija[idAkcije + 1].split(";")[2];
+    cijenaAkcijaCsv = redoviAkcija[idAkcije + 1].split(";")[3];
+    if(rbrAkcijeCsv == (idAkcije + 1)){
+      slikeAkcije.value.push({ url: urlAkcija.default, id: ++idAkcije, ime: imeAkcijeCsv, tekst: tekstAkcijeCsv, cijena: cijenaAkcijaCsv });
+    }
+      else{console.log("rbrAkcijeCsv = " + rbrAkcijeCsv + "id = " + idAkcije)
+    }
+  }  
+
 });
+
+function naruciAkciju(idAkcije){
+  router.push({name: "PonudaAkcija", params: {id: idAkcije}});
+}
 
 </script>
