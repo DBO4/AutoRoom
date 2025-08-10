@@ -248,6 +248,36 @@
       </div>
     </div>
   </div>
+  
+  <div
+    class="akcija"
+     v-if="dialog"
+  >
+    <v-fade-transition hide-on-leave>
+      <v-card
+       
+        append-icon="$close"
+        class="mx-auto"
+        elevation="16"
+        max-width="40%"
+        ref="dialog"
+      >
+        <template v-slot:append>
+          Zatvori
+          <v-btn icon="$close" variant="text" @click="ZatvoriAkciju()"></v-btn>
+        </template>
+
+        <div class="text-center">
+          
+          <v-img
+            :src="srcVelikaAkcija"
+            class="imaggg"
+            ></v-img>
+        </div>       
+      </v-card>
+    </v-fade-transition>
+
+  </div>
 </template>
 
 <script setup>
@@ -258,6 +288,9 @@ import { useRouter } from 'vue-router';
 import RijeciKupaca from '../assets/TekstFajlovi/RijeciKupaca.csv?raw';
 import BlogCsv from '../assets/TekstFajlovi/Blog.csv?raw';
 import Akcije from '../assets/TekstFajlovi/Akcije.csv?raw';
+import { useFullscreen } from '@vueuse/core';
+import { useTemplateRef } from 'vue';
+import { useScroll } from '@vueuse/core'
 
 const redovi = RijeciKupaca.split('\n');
 const redoviBlog = BlogCsv.split('\n');
@@ -278,13 +311,13 @@ const configAkcije = {
   mouseWheel: true,
   wrapAround: true,
 };
-
+const dialog = ref(false);
 const props = defineProps({
   id: String
-})
+});
+var imaVelikaAkcija = false, srcVelikaAkcija = "", vecVidioAkciju = false;
 
 onMounted(async () => {
-
   const modules = import.meta.glob('../assets/Slike/MalaGalerija/*.*');
   let id = 0,rbrCsv,imeCsv,tekstCsv;
 
@@ -338,7 +371,12 @@ onMounted(async () => {
     }
       else{console.log("rbrAkcijeCsv = " + rbrAkcijeCsv + "id = " + idAkcije)
     }
-  }  
+  }
+
+  vecVidioAkciju = getCookie("Akcija");
+
+  if (!vecVidioAkciju) { imaSlika();}
+
 
 });
 
@@ -346,4 +384,50 @@ function naruciAkciju(idAkcije){
   router.push({name: "PonudaAkcija", params: {id: idAkcije}});
 }
 
+window.addEventListener("scroll", function (e) {
+  if (dialog.value && imaVelikaAkcija && !vecVidioAkciju){
+    window.scrollTo(0, 0);
+  } 
+});
+
+async function imaSlika(){
+  const velikaAkcijaPutanja = import.meta.glob('../assets/Slike/VelikaAkcija/*.*');
+  for (const pathAkcija in velikaAkcijaPutanja) {
+    const urlVAkcija = await velikaAkcijaPutanja[pathAkcija]();
+    imaVelikaAkcija = true;
+    dialog.value = true;
+    srcVelikaAkcija = urlVAkcija.default;
+  }
+}
+
+function ZatvoriAkciju(){
+  dialog.value = false;
+  document.cookie = "Akcija=true;";
+}
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+
 </script>
+
+<style>
+
+.akcija {
+  position: absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  background-color: hsla(0, 0%, 0%, 0.8);
+  width: 100%; /* Or a specific width */
+  height: 100%; /* Or a specific height, or use aspect-ratio */
+  overflow: hidden;
+}
+.imaggg {
+  background-color: transparent;
+   width: 100%;
+  max-height: 100%;
+}
+</style>

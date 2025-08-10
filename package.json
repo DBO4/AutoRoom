@@ -12,6 +12,7 @@
     "@jamescoyle/vue-icon": "^0.1.2",
     "@mdi/font": "^7.4.47",
     "@mdi/js": "^7.4.47",
+    "@vueuse/core": "^13.6.0",
     "axios": "^1.10.0",
     "git": "^0.1.5",
     "google-maps": "^4.3.3",
