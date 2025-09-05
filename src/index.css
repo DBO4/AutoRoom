@@ -13,7 +13,7 @@
 .banner-2 {
   @apply px-5  pt-5 md:pt-10 3xl:px-36 2xl:px-36 xl:px-28 lg:px-24 md:px-16;
   background-image: url("./assets/mehanicar.png");
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   
@@ -30,13 +30,14 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
 .banner-5 {
   /*@apply px-5 py-10 pt-5 md:pt-10 3xl:px-36 2xl:px-36 xl:px-28 lg:px-24 md:px-16;*/
   background-image: url("./assets/bg.jpg");
 }
 
 .banner-6 {
-  @apply px-5 py-20 md:pt-10 3xl:px-36 2xl:px-36 xl:px-0 lg:px-0 md:px-0;
+  @apply px-5 py-5 md:pt-5 3xl:px-36 2xl:px-36;
    background-image: url("./assets/bg-30.png");
 }
 
@@ -52,7 +53,7 @@
 }
 
 .submit-button {
-  @apply  3xl:text-xl 2xl:text-xl lg:text-xl md:text-xl text-xs  lg:py-4 lg:px-8 rounded-2xl font-work_sans font-semibold;
+  @apply  3xl:text-xl 2xl:text-xl lg:text-xl md:text-xl text-xs  lg:py-4 lg:px-8 rounded-2xl font-work_sans font-bold;
   background-color: #E57373;
   color: #520000;
 }
@@ -78,7 +79,7 @@
 }
 
 .card {
-  @apply bg-white rounded-2xl md:flex place-items-center my-20 shadow-md;
+  @apply bg-white rounded-2xl md:flex place-items-center my-10 shadow-md;
 }
 .card-image {
   @apply md:w-1/2 mx-2 py-2 flex ;
@@ -135,3 +136,76 @@ img {
   text-decoration: underline;
 }
 
+@font-face {
+    font-family: 'Brzi'; /*a name to be used later*/
+    src: url('./assets/Fontovi/Xenosphere-RM66.ttf'); /*URL to font*/
+}
+
+.brzi{
+  font-family: 'Brzi';
+  font-size: 55px;
+  background-color: black;
+  background-size: cover;
+}
+
+ .bm-burger-button {
+      position: fixed;
+      width: 36px;
+      height: 30px;
+      left: 36px;
+      top: 36px;
+      cursor: pointer;
+    }
+    .bm-burger-bars {
+      background-color: #373a47;
+    }
+    .line-style {
+      position: absolute;
+      height: 20%;
+      left: 0;
+      right: 0;
+    }
+    .cross-style {
+      position: absolute;
+      top: 12px;
+      right: 2px;
+      cursor: pointer;
+    }
+    .bm-cross {
+      background: #bdc3c7;
+    }
+    .bm-cross-button {
+      height: 24px;
+      width: 24px;
+    }
+    .bm-menu {
+      height: 100%; /* 100% Full-height */
+      width: 0; /* 0 width - change this with JavaScript */
+      position: fixed; /* Stay in place */
+      z-index: 1000; /* Stay on top */
+      top: 0;
+      left: 0;
+      background-color: rgb(63, 63, 65); /* Black*/
+      overflow-x: hidden; /* Disable horizontal scroll */
+      padding-top: 60px; /* Place content 60px from the top */
+      transition: 0.5s; /*0.5 second transition effect to slide in the sidenav*/
+    }
+
+    .bm-overlay {
+      background: rgba(0, 0, 0, 0.3);
+    }
+    .bm-item-list {
+      color: #b8b7ad;
+      margin-left: 10%;
+      font-size: 20px;
+    }
+    .bm-item-list > * {
+      display: flex;
+      text-decoration: none;
+      padding: 0.7em;
+    }
+    .bm-item-list > * > span {
+      margin-left: 10px;
+      font-weight: 700;
+      color: white;
+    }

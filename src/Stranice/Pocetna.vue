@@ -1,153 +1,178 @@
 <template>
-  <div class="banner-6">
-    <div class="flex items-center">
-      <div class="w-11/12 ">
-        <div class ="align-center justify-center d-flex">
-          <div class="ma-8 px-5">
-            <iframe width="490" height="900"
-              class="border-2 border-gray-100" 
-              src="src\assets\videoDejo.mp4" 
-              title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-            </iframe>
-          </div>
-          <h1
-            class="3xl:text-8xl 2xl:text-7xl xl:text-6xl lg:text-4xl md:text-3xl sm:text-3xl text-xl font-Eczar font-bold leading-tight text-white"
-            style="font-size: 10rem;"
+<div v-if="jeTelefon()" class="banner-6">
+  <div class="space-y-4 grid place-items-center">
+    <h3 class="hello-button text-gray-700 w-fit mt-5 rounded-lg font-semibold" style="font-size: 3rem;">
+      👋 Pozdrav
+    </h3>
+    <h1
+      style="font-size: 4rem;  text-align: center;"
+       class="3xl:text-8xl 2xl:text-7xl xl:text-6xl lg:text-4xl md:text-3xl sm:text-3xl text-xl font-Eczar font-bold leading-tight text-white place-items-center">
+       Dobrodošli u
+       AutoROOM
+    </h1>
+    <div class="space-y-4 grid place-items-center mt-5 rounded-2xl">
+      <v-btn style="color: white; background-color: #520000; font-size: 1rem;">
+        Pogledajte naš rad
+      </v-btn>
+      <v-btn class=" submit-button rounded-2xl" style="color: #520000; background-color: #db3030; font-size: 1rem;">
+        Kontaktirajte nas
+      </v-btn>
+    </div>
+  </div>
+
+     <div class ="align-center justify-center d-flex">
+        <div class="ma-8 px-5">
+          <iframe  height="600"
+            class="border-2 border-gray-100" 
+            src="src\assets\videoDejo.mp4" 
+            title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+</div>
+<div v-else class="banner-6">
+  <div class="flex items-center">
+    <div class="w-11/12 ">
+      <div class ="align-center justify-center d-flex">
+        <div class="ma-8 px-5">
+          <iframe width="490" height="900"
+            class="border-2 border-gray-100" 
+            src="src\assets\videoDejo.mp4" 
+            title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
+        </div>
+        <h1
+          class="3xl:text-8xl 2xl:text-7xl xl:text-6xl lg:text-4xl md:text-3xl sm:text-3xl text-xl font-Eczar font-bold leading-tight text-white"
+          style="font-size: 10rem;">
+          <h3
+            class="hello-button text-gray-700 w-fit md:py-3 my-4 md:px-5 py-4 px-2 rounded-lg font-semibold font-work_sans"
+            style="font-size: 6rem;"
           >
-           <h3
-              class="hello-button text-gray-700 w-fit md:py-3 my-4 md:px-5 py-4 px-2 rounded-lg font-semibold font-work_sans"
-              style="font-size: 6rem;"
-            >
-              👋 Pozdrav,
-            </h3>
-            Dobrodošli u
-            <a
-              href="https://www.linkedin.com/"
-              target="_blank"
-              class="hover:underline"
-            >
-              </a
-            ><br />AutoROOM
-              <div class="md:flex gap-1 md:gap-10">
-                <button class="bg-gray-800 submit-button-rad hidden md:block" style="font-size: 2rem;">
-                  Pogledajte naš rad
-                </button>
-                <button
-                  class="text-gray-800 submit-button " style="font-size: 2rem;">
-                  Kontaktirajte nas
-                </button>
+            👋 Pozdrav,
+          </h3>
+          Dobrodošli u
+          <a
+            href="https://www.linkedin.com/"
+            target="_blank"
+            class="hover:underline"
+          >
+            </a
+          ><br />AutoROOM
+            <div class="md:flex gap-1 md:gap-10">
+              <button class="bg-gray-800 submit-button-rad hidden md:block" style="font-size: 2rem;">
+                Pogledajte naš rad
+              </button>
+              <button
+                class="text-gray-800 submit-button " style="font-size: 2rem;">
+                Kontaktirajte nas
+              </button>
             </div>
           </h1>
-        </div>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="banner-4 space-y-10 pb-20" id="work">
-    <div class=" py-5 " style="border-radius: 54px; border-width: 15px; border-color:red; background-image: url('src/assets/tragovi.jpg'); background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: center;">
-      <div class="space-y-4 grid place-items-center my-5">
-        <h4 class="heading3">***Trenutne akcije***</h4>
-      </div>
-      <Carousel v-bind="configAkcije">
-          <Slide v-for="image in slikeAkcije" :key="image.id" >
-            <div class="carousel__item border-2 border-red-800 mx-2 bg-white"id="carousel" >
-              <img :src="image.url" :alt="image.ime" id="slika" style="max-height:270px; width: 500px; border-color: red; border-width: 5px;"/>  
-              <div class="px-2 py-1">
-                <div id="ime">{{ image.ime }}</div>
-                <div id="tekst" >{{ image.tekst }}</div>
-                <div id="cijena" style=" color: gold; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: 600; font-size:x-large; background-color: crimson; text-align: center; border-radius: 15%;">{{ image.cijena }} KM</div>
-                <div class ="align-center justify-center d-flex pa-4">
-                  <v-btn rounded="xl" size="small" @click="naruciAkciju(image.id)" block>Naruči</v-btn>
-                </div>
-              </div>
-            </div>
-          </Slide>
-
-          <template #addons>
-            <Navigation />
-            <Pagination />
-          </template>
-        </Carousel>
-      </div>
-    <div v-for="stakva in blog" :key="stakva.idBlog">
-      <div class="card">
-        <div class="space-y-5 py-8 px-8 md:py-16 md:px-20 md:w-1/2">
-          <h4 class="project-title">{{ stakva.naslov }}</h4>
-          <p class="font-work_sans pr-12">
-            {{ stakva.tekst }}
-          </p>
-          <button class="submit-button-blog text-sky-800 font-bold text-2xl tracking-wider">
-            {{stakva.dugme}}
-          </button>
-        </div>
-        <div class="card-image">
-          <img
-            class="object-cover w-full h-72 md:h-96"
-            :src="stakva.url"
-          />
-        </div>
-      </div>
+<div class="banner-4 space-y-10 pb-20" id="work">
+  <div class=" py-5 " style="border-radius: 54px; border-width: 15px; border-color:red; background-image: url('src/assets/tragovi.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;" v-if="malaAkcijaPrikaz">
+    <div class="space-y-4 grid place-items-center my-5">
+      <h4 class="heading3">***Trenutne akcije***</h4>
     </div>
-
-    <div class="blog-kont">
-      <button class="centar-blog submit-button" style="color: white; background-color: #db3030;">
-        Otiđite na naš blog...
-      </button>
-    </div>
-
-  </div>
-
-  <div class="banner-5 px-10 py-10" id="testimonial">
-    <div class="bg-white py-5" style="border-radius: 54px;">
-      <div class="space-y-4 grid place-items-center mt-5">
-        <h3 class="heading3">Riječi naših kupaca</h3>
-        <p class="font-work_sans text-gray-600 font-semibold leading-relaxed">
-          Samo dio uske selekcije komentara naših zadovoljnih kupaca
-        </p>
-      </div>
-      <div class="px-8 py-2">
-      <Carousel v-bind="config">
-        <Slide v-for="image in images" :key="image.id">
-          <div class="carousel__item border-2 border-gray-100 mx-8" style="width: 80%;" id="carousel">
-            <img :src="image.url" :alt="image.ime" id="slika"/>  
-            <div class="px-5 py-3">
-              <div id="ime">{{ image.ime }}</div>
-              <div id="tekst">{{ image.tekst }}</div>
+    <Carousel v-bind="configAkcije">
+      <Slide v-for="image in slikeAkcije" :key="image.id" >
+        <div class="carousel__item border-2 border-red-800 mx-2 bg-white"id="carousel" >
+          <img :src="image.url" :alt="image.ime" id="slika" style="max-height:270px; width: 500px; border-color: red; border-width: 5px;"/>  
+          <div class="px-2 py-1">
+            <div id="ime">{{ image.ime }}</div>
+            <div id="tekst" >{{ image.tekst }}</div>
+            <div id="cijena" style=" color: gold; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: 600; font-size:x-large; background-color: crimson; text-align: center; border-radius: 15%;">{{ image.cijena }} KM</div>
+            <div class ="align-center justify-center d-flex pa-4">
+              <v-btn rounded="xl" size="small" @click="naruciAkciju(image.id)" block>Naruči</v-btn>
             </div>
           </div>
-        </Slide>
-
-        <template #addons>
-          <Navigation />
-          <Pagination />
-        </template>
-      </Carousel>
+        </div>
+      </Slide>
+      <template #addons>
+        <Navigation />
+        <Pagination />
+      </template>
+    </Carousel>
+  </div>
+  <div class="space-y-4 grid place-items-center my-5">
+    <h4 class=" text-white brzi">AutoROOM blog</h4>
+  </div>
+  <div v-for="stakva in blog" :key="stakva.idBlog">
+    <div class="card">
+      <div class="space-y-5 py-8 px-8 md:py-16 md:px-20 md:w-1/2">
+        <h4 class="project-title">{{ stakva.naslov }}</h4>
+        <p class="font-work_sans pr-12">
+          {{ stakva.tekst }}
+        </p>
+        <button class="submit-button-blog text-sky-800 font-bold text-2xl tracking-wider">
+          {{stakva.dugme}}
+        </button>
+      </div>
+      <div class="card-image">
+        <img class="object-cover w-full h-72 md:h-96" :src="stakva.url"/>
       </div>
     </div>
   </div>
+  <div class="blog-kont">
+    <v-btn class=" submit-button rounded-2xl" style="color: #520000; background-color: #db3030; font-size: 1rem;">
+      Otiđite na naš blog...
+    </v-btn>
+  </div>
 
-  <div class="banner-2 md:flex items-center md:justify-evenly py-8" id="about">
-    <iframe class = " border-4 border-gray-800"
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2368.6908003100257!2d16.708772736804814!3d44.96833191684829!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4760cd000b87ae13%3A0x8bf179443b6b3452!2sAUTO%20ROOM!5e0!3m2!1ssr!2sba!4v1747567120361!5m2!1ssr!2sba" 
-      width="600" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+</div>
 
-    <div class="space-y-5 py-8 px-8 md:py-16 md:px-20 md:w-1/2">
-      <h4 class="project-title item " style="color: white;">Ko smo mi</h4>
-      <p class="font-work_sans" style="color: white;">Mi smo ti i ti radimo 100 godina.
-        <br />
-        I got featured various times on many big and small marketplaces,
-        portfolio websites and blogs. I also received some awards and
-        recognitions from some of the big and small award companies. Besides
-        designing, I like to watch anime, read books and solve sudoku.
+<div class="banner-5 px-10 py-10" id="testimonial">
+  <div class="bg-white py-5" style="border-radius: 54px;">
+    <div class="space-y-4 grid place-items-center mt-5">
+      <h3 class="heading3">Riječi naših kupaca</h3>
+      <p class="font-work_sans text-gray-600 font-semibold leading-relaxed" style="text-align: center;">
+        Samo dio uske selekcije komentara naših zadovoljnih kupaca
       </p>
-      <button class="text-sky-800 font-bold text-2xl tracking-wider" style="color: red; text-decoration: underline;">
-        O nama
-      </button>
+    </div>
+    <div class="px-8 py-2">
+    <Carousel v-bind="config">
+      <Slide v-for="image in images" :key="image.id">
+        <div class="carousel__item border-2 border-gray-100 mx-8" style="width: 80%;" id="carousel">
+          <img :src="image.url" :alt="image.ime" id="slika"/>  
+          <div class="px-5 py-3">
+            <div id="ime">{{ image.ime }}</div>
+            <div id="tekst">{{ image.tekst }}</div>
+          </div>
+        </div>
+      </Slide>
+      <template #addons>
+        <Navigation />
+        <Pagination />
+      </template>
+    </Carousel>
     </div>
   </div>
+</div>
+
+<div class="banner-2 md:flex  grid place-items-center md:justify-evenly py-8" id="about">
+  <iframe class = "border-4 border-gray-800" :height=kartaVisina :width=kartaSirina
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2368.6908003100257!2d16.708772736804814!3d44.96833191684829!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4760cd000b87ae13%3A0x8bf179443b6b3452!2sAUTO%20ROOM!5e0!3m2!1ssr!2sba!4v1747567120361!5m2!1ssr!2sba" 
+    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+
+  <div class="space-y-5 py-8 px-8 md:py-16 md:px-20 md:w-1/2">
+    <h4 class="project-title item " style="color: white;">Ko smo mi</h4>
+    <p class="font-work_sans" style="color: white;">Mi smo ti i ti radimo 100 godina.
+      <br />
+      I got featured various times on many big and small marketplaces,
+      portfolio websites and blogs. I also received some awards and
+      recognitions from some of the big and small award companies. Besides
+      designing, I like to watch anime, read books and solve sudoku.
+    </p>
+    <v-btn class="text-sky-800 font-bold text-2xl tracking-wider" style="color: red; text-decoration: underline;">
+      O nama
+    </v-btn>
+  </div>
+</div>
 
   <div class="banner-1">
     <div class=" flex h-full items-center">
@@ -159,12 +184,7 @@
         vašeg metalnog ljubimca
       </h2>
 
-      <a class="underline text-2xl text-white font-work_sans pr-5"
-        >info@autoroom.ba</a
-      >
-      <a class="underline text-2xl text-white font-work_sans"
-        >+38755588855</a
-      >
+      
       </div>
       <div class="w-5/12 pr-28">
       <div class="flex flex-wrap justify-end gap-2">
@@ -276,7 +296,6 @@
         </div>       
       </v-card>
     </v-fade-transition>
-
   </div>
 </template>
 
@@ -300,21 +319,27 @@ const images = ref([]);
 const blog = ref([]);
 const slikeAkcije = ref([]);
 const config = {
-  itemsToShow: 3,
-  gap: 5,
-  mouseWheel: true,
+  itemsToShow: jeTelefon() ? 1 : 3,
+  gap: 0,
+  autoplay: 4000,
   wrapAround: true,
+  pauseAutoplayOnHover: true,
 };
 const configAkcije = {
-  itemsToShow: 6,
+  itemsToShow: jeTelefon() ? 2 : 6,
   gap: 0,
-  mouseWheel: true,
+  autoplay: 4000,
   wrapAround: true,
+  pauseAutoplayOnHover: true,
 };
 const dialog = ref(false);
 const props = defineProps({
   id: String
 });
+const malaAkcijaPrikaz = ref(false);
+const kartaSirina = ref(jeTelefon() ? 350 : 500);
+const kartaVisina = ref(jeTelefon() ? 400 : 500);
+
 var imaVelikaAkcija = false, srcVelikaAkcija = "", vecVidioAkciju = false;
 
 onMounted(async () => {
@@ -368,6 +393,7 @@ onMounted(async () => {
     cijenaAkcijaCsv = redoviAkcija[idAkcije + 1].split(";")[3];
     if(rbrAkcijeCsv == (idAkcije + 1)){
       slikeAkcije.value.push({ url: urlAkcija.default, id: ++idAkcije, ime: imeAkcijeCsv, tekst: tekstAkcijeCsv, cijena: cijenaAkcijaCsv });
+      malaAkcijaPrikaz.value = true;
     }
       else{console.log("rbrAkcijeCsv = " + rbrAkcijeCsv + "id = " + idAkcije)
     }
@@ -376,7 +402,6 @@ onMounted(async () => {
   vecVidioAkciju = getCookie("Akcija");
 
   if (!vecVidioAkciju) { imaSlika();}
-
 
 });
 
@@ -411,6 +436,17 @@ function getCookie(name) {
     if (parts.length === 2) return parts.pop().split(';').shift();
   }
 
+  function jeTelefon(){
+   /*if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+     return true
+   } else {
+     return false
+   }*/
+   
+  if (window.innerWidth > 800) return false;
+  else return true;
+}
+
 </script>
 
 <style>
@@ -421,8 +457,8 @@ function getCookie(name) {
   right:0;
   bottom:0;
   background-color: hsla(0, 0%, 0%, 0.8);
-  width: 100%; /* Or a specific width */
-  height: 100%; /* Or a specific height, or use aspect-ratio */
+  width: 100%; 
+  height: 100%; 
   overflow: hidden;
 }
 .imaggg {

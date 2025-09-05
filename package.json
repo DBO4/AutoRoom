@@ -10,6 +10,7 @@
   "dependencies": {
     "@fawmi/vue-google-maps": "^0.9.79",
     "@jamescoyle/vue-icon": "^0.1.2",
+    "@lottiefiles/dotlottie-vue": "^0.9.1",
     "@mdi/font": "^7.4.47",
     "@mdi/js": "^7.4.47",
     "@vueuse/core": "^13.6.0",
@@ -17,6 +18,7 @@
     "git": "^0.1.5",
     "google-maps": "^4.3.3",
     "vue": "^3.5.17",
+    "vue-burger-menu": "^2.0.5",
     "vue-csv-import": "^4.1.2",
     "vue-router": "^4.5.1",
     "vue2-google-maps": "^0.10.7",

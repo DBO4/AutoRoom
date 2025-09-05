@@ -1,6 +1,34 @@
 <template>
-     <div class="banner-1">
-    
+
+    <v-app>
+     <div v-if="jeTelefon()" class = "rounded-2xl">
+
+      <v-app-bar color="white" style="" app>
+        <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <div class="items-center justify-between">
+        <div style="object-fit: scale-down;">
+          <img
+            src="./assets/AutoRoom.svg"
+            alt="Auto ROOM"
+          />
+        </div>
+        </div>
+      </v-app-bar>
+
+      <v-navigation-drawer
+        v-model="drawer"
+        :location="$vuetify.display.mobile ? 'top' : undefined"
+        temporary
+      >
+        <v-list
+          :items="items"
+        ></v-list>
+      </v-navigation-drawer>
+
+     
+
+    </div>
+    <div v-else  class="banner-1">
     <!-- NavBar -->
     <nav
       class="banner-3 container px-0 mx-auto md:flex md:justify-between rounded-xl md:items-center"
@@ -41,19 +69,41 @@
       </ul>
     </nav>
     <!-- End Navbar -->
-     
-    
-     </div>
-     <RouterView></RouterView>
-
+    </div>
+      <v-main>
+       <RouterView></RouterView>
+    </v-main>
+  </v-app>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted,shallowRef, toRef, watch  } from 'vue';
 import { Carousel, Pagination, Navigation, Slide } from 'vue3-carousel';
 import 'vue3-carousel/carousel.css';
-
+import { Slide as Slider2 } from 'vue-burger-menu';
 import { useRouter } from 'vue-router';
+
+  const items = [
+    {
+      title: 'Foo',
+      value: 'foo',
+    },
+    {
+      title: 'Bar',
+      value: 'bar',
+    },
+    {
+      title: 'Fizz',
+      value: 'fizz',
+    },
+    {
+      title: 'Buzz',
+      value: 'buzz',
+    },
+  ];
+
+  const drawer = ref(false);
+  const group = ref(null);
 
 const router = useRouter();
 
@@ -64,5 +114,20 @@ function Pocetna(){
 function Ponuda(){
   router.push({name: "Ponuda"});
 }
+
+function jeTelefon(){
+   /*if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+     return true
+   } else {
+     return false
+   }*/
+   
+  if (window.innerWidth > 800) return false;
+  else return true;
+}
+
+  watch(group, () => {
+    drawer.value = false
+  });
 
 </script>

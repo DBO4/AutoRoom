@@ -16,7 +16,8 @@ if (session_status() == PHP_SESSION_NONE) {
 //These must be at the top of your script, not inside a function
 
 
-
+   
+    //echo fgets($fajlMejl);
 //Load Composer's autoloader
 include ('vendor/autoload.php');
 
@@ -26,6 +27,7 @@ $mail = new PHPMailer(true);
 
 try {
     
+
     //Server settings
     $mail->SMTPDebug = 2;                      
     $mail->isSMTP();                                            
@@ -36,9 +38,9 @@ try {
     $mail->SMTPSecure = "tls";         
     $mail->Port       = 587;       
 
-    
+
     //$mail->addAddress($email, $ime);     //Add a recipient
-    $mail->addAddress('darioborisevic@gmail.com');               //Name is optional
+    $mail->addAddress("darioborisevic@gmail.com");               //Name is optional
     //$mail->addReplyTo('info@example.com', 'Information');
     //$mail->addCC('cc@example.com');
     //$mail->addBCC('bcc@example.com');

@@ -354,6 +354,37 @@
     
   </div>
   
+  <div
+    class="poslato"
+     v-if="dialog"
+  >
+    <v-fade-transition hide-on-leave>
+      <v-card
+       
+        append-icon="$close"
+        class="mx-auto"
+        elevation="16"
+        max-width="40%"
+        ref="dialog"
+      >
+        <template v-slot:append>
+          Hvala što ste dfgh
+          <
+          <v-btn icon="$close" variant="text" @click="ZatvoriAkciju()"></v-btn>
+        </template>
+
+        <div class="text-center">
+          
+          <v-img
+            :src="srcVelikaAkcija"
+            class="imaggg"
+            ></v-img>
+        </div>       
+      </v-card>
+    </v-fade-transition>
+
+  </div>
+
 </template>
 
 
