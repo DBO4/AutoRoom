@@ -8,6 +8,7 @@
 .banner-1 {
   @apply px-5 md:pt-10 3xl:px-36 2xl:px-36 xl:px-0 lg:px-0 md:px-0;
   background-image: url("./assets/bg-30.png");
+  background-size: cover;
 }
 
 .banner-2 {
@@ -38,6 +39,11 @@
 
 .banner-6 {
   @apply px-5 py-5 md:pt-5 3xl:px-36 2xl:px-36;
+   background-image: url("./assets/bg-30.png");
+}
+
+.banner-7 {
+ 
    background-image: url("./assets/bg-30.png");
 }
 
