@@ -13,6 +13,8 @@ import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiAccount } from '@mdi/js';
 import '@mdi/font/css/materialdesignicons.css';
 import NasRad from './Stranice/NasRad.vue';
+import ONama from './Stranice/ONama.vue';
+import Kontakt from './Stranice/Kontakt.vue'
 
 const vuetify = createVuetify({
   components,
@@ -23,7 +25,9 @@ const routes = [
     {path: "/", name: "Pocetna", component: Pocetna},
     {path: "/Ponuda", name: "Ponuda", component: Ponuda},
     {path: "/Ponuda/Akcija/:id", name: "PonudaAkcija", component: Ponuda, props: true},
-    {path: "/NasRad", name: "NasRad", component: NasRad}
+    {path: "/PJPrijedor", name: "NasRad", component: NasRad},
+    {path: "/ONama", name: "ONama", component: ONama},
+    {path: "/Kontakt", name: "Kontakt", component: Kontakt}
 ]
 
 const router = createRouter({

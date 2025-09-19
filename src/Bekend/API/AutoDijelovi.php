@@ -11,7 +11,7 @@ $kanal = $_GET['kanal'];
 $nap = $_GET['nap'];
 $prefKanal = "";
 
-$tekst = "Ponuda zatražena za auto dijelove/ulja<br><br>Podaci:<br>" .
+$tekst = "Ponuda zatražena za auto dijelove<br><br>Podaci:<br>" .
 "<br>Napomena: " . $nap . 
 "<br>Kontakt: " . $kanal . " - ";
 

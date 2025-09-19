@@ -13,11 +13,10 @@ $dimB = $_GET['dimB'];
 $dimC = $_GET['dimC'];
 $tip = $_GET['tip'];
 $nap = $_GET['nap'];
-$dot = $_GET['dot'];
 $prefKanal = "";
 
 $tekst = "Ponuda zatražena za Gume<br><br>Podaci:<br>"
-. "Dimenzije: " . $dimA . "/" . $dimB . "/" . $dimC . " - " . $tip . "<br>Dot: " . $dot .
+. "Dimenzije: " . $dimA . "/" . $dimB . "/" . $dimC . " - " . $tip . 
 "<br>Napomena: " . $nap . 
 "<br>Kontakt: " . $kanal . " - ";
 

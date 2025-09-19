@@ -47,6 +47,15 @@
    background-image: url("./assets/bg-30.png");
 }
 
+.banner-8 {
+  @apply  pt-5;
+  background-image: url("./assets/mehanicar.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+}
+
 .bg-yellowis {
   background-color: #ffddbf;
 }
@@ -85,7 +94,7 @@
 }
 
 .card {
-  @apply bg-white rounded-2xl md:flex place-items-center my-10 shadow-md;
+  @apply bg-white rounded-2xl md:flex place-items-center my-1 shadow-md;
 }
 .card-image {
   @apply md:w-1/2 mx-2 py-2 flex ;

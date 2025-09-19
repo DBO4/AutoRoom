@@ -67,13 +67,15 @@
       <ul
         class="flex-col items-end  space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 px-10"
       >
-        <li class="menu-button"><a href="#" @click="Pocetna()">Početna</a></li>
-        <li class="menu-button"><a href="#work" @click="NasRad()" v-smooth-scroll>Naš rad</a></li>
+        <li class="menu-button"><a @click="Pocetna()">Početna</a></li>
         <li class="menu-button"><a href="" @click="Ponuda()">Naša ponuda</a></li>
+        <li class="menu-button"><a href="" @click="Ponuda()">Blog</a></li>
+        <li class="menu-button"><a href="#work" @click="NasRad()" v-smooth-scroll>Poslovna jedinica Prijedor</a></li>
+        <li class="menu-button"><a href="#about" v-smooth-scroll @click="Onama()">O nama</a></li>
         <li class="menu-button">
-          <a href="#testimonial" v-smooth-scroll>Korisnici</a>
+          <a @click="Kontakt()">Kontakt</a>
         </li>
-        <li class="menu-button"><a href="#about" v-smooth-scroll>O nama</a></li>
+        
       </ul>
     </nav>
     <!-- End Navbar -->
@@ -89,10 +91,10 @@
       <div class=" align-center justify-center place-items-center d-flex px-4">
         <div class="w-7/12 pt-8">
           <h2 class="text-white md:text-6xl text-2xl font-Eczar mb-0 font-bold">
-            Javite nam se da zajedno izaberemo najbolje gume za
+            AutoROOM
           </h2>
           <h2 class="text-gray-700 kraj md:text-6xl text-2xl font-Eczar mb-5 font-bold">
-            vašeg metalnog ljubimca
+            Sigurno na drum
           </h2>
         </div>
       </div>
@@ -134,6 +136,24 @@
           />
         </div>
       </v-btn>
+      <v-btn class="m-3" rounded="xl" color="#ff0202" href="viber://chat?number=+38765867682" target="_blank">
+        <div style="object-fit: scale-down;">
+          <img
+            class="object-cover w-full h-8 "
+            src="./assets/mreze/vib.png"
+            alt="Viber"
+          />
+        </div>
+      </v-btn>
+      <v-btn class="m-3" rounded="xl" color="#ff0202" href="https://wa.me/+38765867682?text=Pozdrav,%20interesuju%20me%20gume%20sa%20sajta%20" target="_blank">
+        <div style="object-fit: scale-down;">
+          <img
+            class="object-cover w-full h-8 "
+            src="./assets/mreze/wa.png"
+            alt="Viber"
+          />
+        </div>
+      </v-btn>
     </div>
     <v-divider class="my-2" thickness="4" ></v-divider>
     <div class="text-caption font-weight-regular  opacity-60" style="color: white;">
@@ -156,10 +176,11 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
   const items = [
    { title: 'Početna',  route: '/' },
-   { title: 'Naš rad',  route: '/NasRad' },
    { title: 'Naša ponuda',  route: '/Ponuda' },
-   { title: 'Korisnici',  route: '' },
-   { title: 'O nama',  route: '' },
+   { title: 'Blog', route: '/Blog'},
+   { title: 'Poslovna jedinica Prijedor',  route: '/PJPrijedor' },
+   { title: 'O nama',  route: '/ONama' },
+   { title: 'Kontakt',  route: '/Kontakt' }
   ];
 
   const drawer = ref(false);
@@ -167,7 +188,7 @@ const router = useRouter();
 
 
 function Pocetna(){
-  router.push({ name: 'Pocetna'});
+  router.push({ path: '/'});
 }
 
 function Ponuda(){
@@ -191,6 +212,14 @@ function jeTelefon(){
 
   function NasRad(){
     router.push({name: "NasRad"});
+  }
+
+  function Onama(){
+    router.push({name: "ONama"});
+  }
+
+  function Kontakt(){
+    router.push({name: "Kontakt"});
   }
 
 </script>

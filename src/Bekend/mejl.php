@@ -40,7 +40,7 @@ try {
 
 
     //$mail->addAddress($email, $ime);     //Add a recipient
-    $mail->addAddress("darioborisevic@gmail.com");               //Name is optional
+    $mail->addAddress("prodaja@autoroom.ba");               //Name is optional
     //$mail->addReplyTo('info@example.com', 'Information');
     //$mail->addCC('cc@example.com');
     //$mail->addBCC('bcc@example.com');

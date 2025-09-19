@@ -11,10 +11,10 @@
        AutoROOM
     </h1>
     <div class="space-y-4 grid place-items-center mt-5 rounded-2xl">
-      <v-btn style="color: white; background-color: #520000; font-size: 1rem;">
+      <v-btn style="color: white; background-color: #520000; font-size: 1rem;" @click="NasRad()">
         Pogledajte naš rad
       </v-btn>
-      <v-btn class=" submit-button rounded-2xl" style="color: #520000; background-color: #db3030; font-size: 1rem;">
+      <v-btn class=" submit-button rounded-2xl" style="color: #520000; background-color: #db3030; font-size: 1rem;" @click="Kontaktiraj()">
         Kontaktirajte nas
       </v-btn>
     </div>
@@ -59,11 +59,11 @@
             </a
           ><br />AutoROOM
             <div class="md:flex gap-1 md:gap-10">
-              <button class="bg-gray-800 submit-button-rad hidden md:block" style="font-size: 2rem;">
+              <button class="bg-gray-800 submit-button-rad hidden md:block" style="font-size: 2rem;" @click="NasRad()">
                 Pogledajte naš rad
               </button>
               <button
-                class="text-gray-800 submit-button " style="font-size: 2rem;">
+                class="text-gray-800 submit-button " @click="Kontaktiraj()" style="font-size: 2rem;">
                 Kontaktirajte nas
               </button>
             </div>
@@ -98,12 +98,12 @@
       </template>
     </Carousel>
   </div>
-  <div class="space-y-4 grid place-items-center my-5">
+  <!-- <div class="space-y-4 grid place-items-center my-5">
     <h4 class=" text-white brzi">AutoROOM blog</h4>
-  </div>
+  </div> -->
   <div v-for="stakva in blog" :key="stakva.idBlog">
     <div class="card">
-      <div class="space-y-5 py-8 px-8 md:py-16 md:px-20 md:w-1/2">
+      <div class="space-y-5 py-2 px-8">
         <h4 class="project-title">{{ stakva.naslov }}</h4>
         <p class="font-work_sans pr-12">
           {{ stakva.tekst }}
@@ -119,24 +119,25 @@
   </div>
   <div class="blog-kont">
     <v-btn class=" submit-button rounded-2xl" style="color: #520000; background-color: #db3030; font-size: 1rem;">
-      Otiđite na naš blog...
+      Pogledajte ostatak ponude
     </v-btn>
   </div>
 
 </div>
 
-<div class="banner-5 px-10 py-10" id="testimonial">
-  <div class="bg-white py-5" style="border-radius: 54px;">
-    <div class="space-y-4 grid place-items-center mt-5">
+
+<div  :class="[$vuetify.display.mobile ? 'banner-5 px-6 mx-1 py-4 ' : 'banner-5 px-6 mx-10 py-4']" id="testimonial">
+  <!--<div class="bg-white py-5" style="border-radius: 54px;">
+    <div class="grid place-items-center mt-3">
       <h3 class="heading3">Riječi naših kupaca</h3>
       <p class="font-work_sans text-gray-600 font-semibold leading-relaxed" style="text-align: center;">
         Samo dio uske selekcije komentara naših zadovoljnih kupaca
       </p>
     </div>
-    <div class="px-8 py-2">
+    <div class="px-3 py-2">
     <Carousel v-bind="config">
       <Slide v-for="image in images" :key="image.id">
-        <div class="carousel__item border-2 border-gray-100 mx-8" style="width: 80%;" id="carousel">
+        <div class="carousel__item border-2 border-gray-100 mx-1" style="width: 80%;" id="carousel">
           <img :src="image.url" :alt="image.ime" id="slika"/>  
           <div class="px-5 py-3">
             <div id="ime">{{ image.ime }}</div>
@@ -150,7 +151,54 @@
       </template>
     </Carousel>
     </div>
-  </div>
+  </div>-->
+    <div class="space-y-4 grid place-items-center my-5">
+      <h4 class="project-title item " style="color: white;">O brendovima</h4>
+    </div>
+    <div v-if="$vuetify.display.mobile">
+      <Carousel v-bind="configGuma">
+      <Slide v-for="image in slikeBrendGuma" :key="image.id" >
+        <div class=" rounded-2xl ma-8 mx-0" style="background-image: url('src/assets/tragovi-30.png'); background-size: cover; width: fit-content; height: fit-content;" >
+          <div style="height: 350px;" class="grid place-items-center">
+            <img :src="image.url" :alt="image.ime" id="slika" style="width: 350px; height: fit-content;"/>  
+          </div>
+          <div class="px-2 py-1">
+            <div class ="align-center justify-center d-flex pa-4">
+              <v-btn rounded="xl"  style="background-color: #520000; color: white;" @click="naruciAkciju(image.id)" block>Nauči nešto o brendu {{ image.ime }}</v-btn>
+            </div>
+          </div>
+        </div>
+      </Slide>
+      <template #addons>
+        <Navigation />
+      </template>
+    </Carousel>
+    
+    </div>
+    <div v-else>
+    
+    <Carousel v-bind="configGuma" class="mx-10 pt-5">
+      <Slide v-for="image in slikeBrendGuma" class="mx-10" :key="image.id" >
+        <div class=" rounded-2xl mx-5" style="background-image: url('src/assets/tragovi.jpg'); background-size: cover;" >
+          <div style="height: 250px; " class="grid place-items-center">
+            <img :src="image.url" :alt="image.ime" id="slika" style="width: fit-content; height: fit-content; max-height: 250px; max-width: 450px; border-color: red; border-width: 5px;"/>  
+          </div>
+          <div class="px-2 py-1">
+            <div class ="align-center justify-center d-flex pa-4">
+              <v-btn rounded="xl" size="x-large" style="background-color: #520000; color: white;" @click="naruciAkciju(image.id)" block>Nauči nešto o brendu {{ image.ime }}</v-btn>
+            </div>
+          </div>
+        </div>
+      </Slide>
+      <template #addons>
+        <Navigation />
+        <br></br>
+        <br></br>
+        <Pagination />
+      </template>
+    </Carousel>
+    </div>
+    
 </div>
 
 <div class="banner-2 md:flex  grid place-items-center md:justify-evenly py-8" id="about">
@@ -168,7 +216,7 @@
       recognitions from some of the big and small award companies. Besides
       designing, I like to watch anime, read books and solve sudoku.
     </p>
-    <v-btn class="text-sky-800 font-bold text-2xl tracking-wider" style="color: red; text-decoration: underline;">
+    <v-btn class="text-sky-800 font-bold text-2xl tracking-wider" @click="Onama()" style="color: red; text-decoration: underline;">
       O nama
     </v-btn>
   </div>
@@ -214,30 +262,52 @@ import { useRouter } from 'vue-router';
 import RijeciKupaca from '../assets/TekstFajlovi/RijeciKupaca.csv?raw';
 import BlogCsv from '../assets/TekstFajlovi/Blog.csv?raw';
 import Akcije from '../assets/TekstFajlovi/Akcije.csv?raw';
+import BrendGuma from '../assets/TekstFajlovi/BrendoviGuma.csv?raw';
+import BrendGuma2 from '../assets/TekstFajlovi/BrendoviGuma2.csv?raw';
 import { useFullscreen } from '@vueuse/core';
 import { useTemplateRef } from 'vue';
 import { useScroll } from '@vueuse/core'
+import ONama from './ONama.vue';
+import Kontakt from './Kontakt.vue';
 
 const redovi = RijeciKupaca.split('\n');
 const redoviBlog = BlogCsv.split('\n');
 const redoviAkcija = Akcije.split('\n');
+const redoviBrendGuma = BrendGuma.split('\n');
+const redoviBrendGuma2 = BrendGuma2.split('\n');
 const router = useRouter();
 const images = ref([]);
 const blog = ref([]);
 const slikeAkcije = ref([]);
+const slikeBrendGuma = ref([]);
+const slikeBrendGuma2 = ref([]);
 const config = {
   itemsToShow: jeTelefon() ? 1 : 3,
   gap: 0,
   autoplay: 4000,
-  wrapAround: true,
-  pauseAutoplayOnHover: true,
+  wrapAround: true
 };
 const configAkcije = {
   itemsToShow: jeTelefon() ? 2 : 6,
   gap: 0,
-  autoplay: 4000,
+  autoplay: 1500,
+  wrapAround: true
+};
+const configGuma = {
+  itemsToShow: jeTelefon() ? 1 : 4,
+  gap: 5,
+  autoplay: 1500,
   wrapAround: true,
-  pauseAutoplayOnHover: true,
+  snapAlign: 'center',
+  dir: 'ltr'
+};
+const configGuma2 = {
+  itemsToShow: jeTelefon() ? 1 : 4,
+  gap: 5,
+  autoplay: 1500,
+  wrapAround: true,
+  snapAlign: 'center',
+  dir: 'rtl'
 };
 const dialog = ref(false);
 const props = defineProps({
@@ -306,6 +376,31 @@ onMounted(async () => {
     }
   }
 
+
+  /////////////////////////////////
+
+
+  const moduliBrendGuma = import.meta.glob('../assets/Slike/BrendoviGuma/*.*');
+  let idBrendGuma = 0,rbrBrendGumaCsv = 0,imeBrendGumaCsv,tekstBrendGumaCsv;
+
+  for (const pathAkcija in moduliBrendGuma) {
+    const urlAkcija = await moduliBrendGuma[pathAkcija]();
+    rbrBrendGumaCsv = parseInt(redoviBrendGuma[idBrendGuma + 1].split(";")[0]);
+    imeBrendGumaCsv = redoviBrendGuma[idBrendGuma + 1].split(";")[1];
+    tekstBrendGumaCsv = redoviBrendGuma[idBrendGuma + 1].split(";")[2];
+    //if(rbrBrendGumaCsv == (idBrendGuma + 1)){
+      slikeBrendGuma.value.push({ url: urlAkcija.default, id: rbrBrendGumaCsv, ime: imeBrendGumaCsv});
+      ++idBrendGuma;
+    /*}
+      else{*/ //console.log("rbrBrendGumaCsv = " + rbrBrendGumaCsv + "id = " + idBrendGuma + " " + urlAkcija.default)
+    //}
+  }
+
+  /////////////////////////////////////
+
+
+
+
   vecVidioAkciju = getCookie("Akcija");
 
   if (!vecVidioAkciju) { imaSlika();}
@@ -354,6 +449,17 @@ function getCookie(name) {
   else return true;
 }
 
+function NasRad(){
+    router.push({name: "NasRad"});
+  }
+
+   function Onama(){
+    router.push({name: "ONama"});
+  }
+
+  function Kontaktiraj(){
+      router.push({name: "Kontakt"});
+    }
 </script>
 
 <style>

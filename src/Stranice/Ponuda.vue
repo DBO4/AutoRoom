@@ -149,19 +149,10 @@
                                                 :max="100"
                                                 :min="30"
                                             ></v-number-input>
-                                            <v-text-field
-                                                :reverse="false"
-                                                controlVariant="default"
-                                                label="Dot"
-                                                :hideInput="false"
-                                                :inset="false"
-                                                width="200"
-                                                v-model="dot"
-                                            ></v-text-field>
                                             <v-radio-group inline label="Izaberite vrstu guma" v-model="tip" class="grid place-items-center">
                                                 <v-radio color="red" label="Zimske" value="Zimske"></v-radio>
                                                 <v-radio color="red" label="Ljetne" value="Ljetne"></v-radio>
-                                                <v-radio color="red" value="M+S" label="M+S"></v-radio>
+                                                <v-radio color="red" value="Cjelogodišnje" label="Cjelogodišnje"></v-radio>
                                             </v-radio-group>                        
                                         </div>
                                 </div>
@@ -175,7 +166,7 @@
                                         <v-combobox
                                             v-model="brendovi"
                                             :items="items"
-                                            label="Brendovi"
+                                            label="Vozila"
                                             width="250"
                                         ></v-combobox>
                                         <v-number-input
@@ -192,7 +183,7 @@
                                         <v-number-input
                                             :reverse="false"
                                             controlVariant="default"
-                                            label="Broj rupa"
+                                            label="Centralna rupa"
                                             :hideInput="false"
                                             :inset="false"
                                             width="250"
@@ -257,7 +248,7 @@
                                         <v-number-input
                                             :reverse="false"
                                             controlVariant="default"
-                                            label="Veličina feluge"
+                                            label="Veličina ratkape"
                                             :hideInput="false"
                                             :inset="false"
                                             width="250"
@@ -270,25 +261,39 @@
                                 <div v-if="model == 5" class="pa-4">
                                     <div class="d-flex fill-height align-center justify-center">
                                         <h3 class="text-h6">
-                                            Unesite podatke o auto dijelovima ili uljima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            Unesite podatke o auto dijelovima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
                                         </h3>
                                     </div>
                                 </div>
-                                <div v-if="model == 6" class="pa-4">
+                                 <div v-if="model == 6" class="pa-4">
                                     <div class="d-flex fill-height align-center justify-center">
                                         <h3 class="text-h6">
-                                            Unesite podatke o moto dijelovima ili uljima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            Unesite podatke o uljima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
                                         </h3>
                                     </div>
                                 </div>
                                 <div v-if="model == 7" class="pa-4">
                                     <div class="d-flex fill-height align-center justify-center">
                                         <h3 class="text-h6">
-                                            Unesite podatke o akumulatorima koji vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            Unesite podatke o moto dijelovima ili uljima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
                                         </h3>
                                     </div>
                                 </div>
                                 <div v-if="model == 8" class="pa-4">
+                                    <div class="d-flex fill-height align-center justify-center">
+                                        <h3 class="text-h6">
+                                            Unesite podatke o akumulatorima koji vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div v-if="model == 9" class="pa-4">
+                                    <div class="d-flex fill-height align-center justify-center">
+                                        <h3 class="text-h6">
+                                            Upišite šta vas interesuje od Quad i Off road programa, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div v-if="model == 10" class="pa-4">
                                     <div class="d-flex fill-height align-center justify-center">
                                         <h3 class="text-h6">
                                             Unesite podatke o svemu ostalom što niste pronašli i što vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
@@ -447,21 +452,11 @@
                                                 class="ma-4"
                                                 :max="100"
                                                 :min="30"
-                                            ></v-number-input>
-                                            <v-text-field
-                                                :reverse="false"
-                                                controlVariant="default"
-                                                label="Dot"
-                                                :hideInput="false"
-                                                :inset="false"
-                                                width="200"
-                                                v-model="dot"
-                                                class="ma-4"
-                                            ></v-text-field>
+                                            ></v-number-input>                                            
                                             <v-radio-group inline label="Izaberite vrstu guma" v-model="tip">
                                                 <v-radio color="red" label="Zimske" value="Zimske"></v-radio>
                                                 <v-radio color="red" label="Ljetne" value="Ljetne"></v-radio>
-                                                <v-radio color="red" value="M+S" label="M+S"></v-radio>
+                                                <v-radio color="red" value="Cjelogodišnje" label="Cjelogodišnje"></v-radio>
                                             </v-radio-group>                        
                                         </div>
                                 </div>
@@ -475,7 +470,7 @@
                                         <v-combobox
                                             v-model="brendovi"
                                             :items="items"
-                                            label="Brendovi"
+                                            label="Vozila"
                                         ></v-combobox>
                                         <v-number-input
                                             :reverse="false"
@@ -492,7 +487,7 @@
                                         <v-number-input
                                             :reverse="false"
                                             controlVariant="default"
-                                            label="Broj rupa"
+                                            label="Centralna rupa"
                                             :hideInput="false"
                                             :inset="false"
                                             width="200"
@@ -558,7 +553,7 @@
                                         <v-number-input
                                             :reverse="false"
                                             controlVariant="default"
-                                            label="Veličina feluge"
+                                            label="Veličina ratkape"
                                             :hideInput="false"
                                             :inset="false"
                                             width="200"
@@ -572,31 +567,46 @@
                                 <div v-if="model == 5" class="pa-4">
                                     <div class="d-flex fill-height align-center justify-center">
                                         <h3 class="text-h6">
-                                            Unesite podatke o auto dijelovima ili uljima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            Unesite podatke o auto dijelovima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
                                         </h3>
                                     </div>
                                 </div>
-                                <div v-if="model == 6" class="pa-4">
+                                 <div v-if="model == 6" class="pa-4">
                                     <div class="d-flex fill-height align-center justify-center">
                                         <h3 class="text-h6">
-                                            Unesite podatke o moto dijelovima ili uljima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            Unesite podatke o auto-uljima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
                                         </h3>
                                     </div>
                                 </div>
                                 <div v-if="model == 7" class="pa-4">
                                     <div class="d-flex fill-height align-center justify-center">
                                         <h3 class="text-h6">
-                                            Unesite podatke o akumulatorima koji vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            Unesite podatke o moto dijelovima ili uljima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
                                         </h3>
                                     </div>
                                 </div>
                                 <div v-if="model == 8" class="pa-4">
                                     <div class="d-flex fill-height align-center justify-center">
                                         <h3 class="text-h6">
+                                            Unesite podatke o akumulatorima koji vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                        </h3>
+                                    </div>
+                                </div>
+                                 <div v-if="model == 9" class="pa-4">
+                                    <div class="d-flex fill-height align-center justify-center">
+                                        <h3 class="text-h6">
+                                            Upišite šta vas interesuje od Quad i Off road programa, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div v-if="model == 10" class="pa-4">
+                                    <div class="d-flex fill-height align-center justify-center">
+                                        <h3 class="text-h6">
                                             Unesite podatke o svemu ostalom što niste pronašli i što vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
                                         </h3>
                                     </div>
                                 </div>
+                                
                                 <div>
                                     <div class="px-11 ">
                                         <h3 class="text-h6" style="text-align: left;">
@@ -751,7 +761,6 @@
   const brtel = ref("");
   const email = ref("");
   const d = new Date();
-  const dot = ref("Svi");
   const items = Brendovi.split('\n');
   const brendovi = ref('Svi');
   const cola = ref();
@@ -829,7 +838,7 @@ const stavkeOLX = ref([]);
 
     if (model.value == 0){
         axios
-        .get("http://localhost:3000/API/Gume.php?email=" + email.value + "&brtel=" + brtel.value + "&kanal=" + komunikacija.value + "&dimA=" + dimA.value + "&dimB=" + dimB.value + "&dimC=" + dimC.value + "&tip=" + tip.value + "&nap=" + nap.value + "&dot=" + dot.value)
+        .get("http://localhost:3000/API/Gume.php?email=" + email.value + "&brtel=" + brtel.value + "&kanal=" + komunikacija.value + "&dimA=" + dimA.value + "&dimB=" + dimB.value + "&dimC=" + dimC.value + "&tip=" + tip.value + "&nap=" + nap.value )
         .then(function (response) {
             console.log(response.data);
             if (response.data.error) {
@@ -842,7 +851,6 @@ const stavkeOLX = ref([]);
         dimB.value = 150;
         dimC.value = 150;
         tip.value = "";
-        dot.value = "";
         window.scrollTo({ top: 0, behavior: 'smooth' });
         dialog.value = true;
         email.value = "";
@@ -950,7 +958,7 @@ const stavkeOLX = ref([]);
     }
     else if (model.value == 6){
         axios
-        .get("http://localhost:3000/API/MotoDijelovi.php?email=" + email.value + "&brtel=" + brtel.value + "&kanal=" + komunikacija.value + "&nap=" + nap.value )
+        .get("http://localhost:3000/API/Auto-Ulja.php?email=" + email.value + "&brtel=" + brtel.value + "&kanal=" + komunikacija.value + "&nap=" + nap.value )
         .then(function (response) {
             console.log(response.data);
             if (response.data.error) {
@@ -968,7 +976,7 @@ const stavkeOLX = ref([]);
     }
     else if (model.value == 7){
         axios
-        .get("http://localhost:3000/API/Akumulatori.php?email=" + email.value + "&brtel=" + brtel.value + "&kanal=" + komunikacija.value + "&nap=" + nap.value )
+        .get("http://localhost:3000/API/MotoDijelovi.php?email=" + email.value + "&brtel=" + brtel.value + "&kanal=" + komunikacija.value + "&nap=" + nap.value )
         .then(function (response) {
             console.log(response.data);
             if (response.data.error) {
@@ -985,6 +993,42 @@ const stavkeOLX = ref([]);
         nap.value = "";
     }
     else if (model.value == 8){
+        axios
+        .get("http://localhost:3000/API/Akumulatori.php?email=" + email.value + "&brtel=" + brtel.value + "&kanal=" + komunikacija.value + "&nap=" + nap.value )
+        .then(function (response) {
+            console.log(response.data);
+            if (response.data.error) {
+            this.errorMsg = response.data.message;
+            } else {
+            this.projects = response.data;
+            }
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        dialog.value = true;
+        email.value = "";
+        brtel.value = "";
+        komunikacija.value = null;
+        nap.value = "";
+    }
+    else if (model.value == 9){
+        axios
+        .get("http://localhost:3000/API/QuadOffRoad.php?email=" + email.value + "&brtel=" + brtel.value + "&kanal=" + komunikacija.value + "&nap=" + nap.value )
+        .then(function (response) {
+            console.log(response.data);
+            if (response.data.error) {
+            this.errorMsg = response.data.message;
+            } else {
+            this.projects = response.data;
+            }
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        dialog.value = true;
+        email.value = "";
+        brtel.value = "";
+        komunikacija.value = null;
+        nap.value = "";
+    }
+    else if (model.value == 10){
         axios
         .get("http://localhost:3000/API/Ostalo.php?email=" + email.value + "&brtel=" + brtel.value + "&kanal=" + komunikacija.value + "&nap=" + nap.value )
         .then(function (response) {

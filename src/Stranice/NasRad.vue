@@ -39,7 +39,6 @@ import { ref, onMounted } from 'vue';
 
 const slike = ref([]);
 const slikeFolder = import.meta.glob('../assets/Slike/NasRadGalerija/*.*');
-const kolona = jeTelefon() ? 3 : 6;
 
 import ExpandableImage from './ExpandableImage.vue'
 let vueExpandableImage = {}
@@ -58,10 +57,6 @@ onMounted(async () => {
         slike.value.push({ url: urlFolder.default});
     }
 });
-
-function jeTelefon(){
-   // return $vuetify.display.mobile;
-}
 </script>
 
 <style scoped>
