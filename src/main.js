@@ -14,7 +14,9 @@ import { mdiAccount } from '@mdi/js';
 import '@mdi/font/css/materialdesignicons.css';
 import NasRad from './Stranice/NasRad.vue';
 import ONama from './Stranice/ONama.vue';
-import Kontakt from './Stranice/Kontakt.vue'
+import Kontakt from './Stranice/Kontakt.vue';
+import Blog from './Stranice/Blog.vue';
+import BlogArtikal from './Stranice/BlogArtikal.vue';
 
 const vuetify = createVuetify({
   components,
@@ -27,7 +29,9 @@ const routes = [
     {path: "/Ponuda/Akcija/:id", name: "PonudaAkcija", component: Ponuda, props: true},
     {path: "/PJPrijedor", name: "NasRad", component: NasRad},
     {path: "/ONama", name: "ONama", component: ONama},
-    {path: "/Kontakt", name: "Kontakt", component: Kontakt}
+    {path: "/Kontakt", name: "Kontakt", component: Kontakt},
+    {path: "/Blog", name: "Blog", component: Blog},
+    {path: "/Blog/:idBlog", name: "BlogArtikal", component: BlogArtikal, props: true}
 ]
 
 const router = createRouter({

@@ -108,7 +108,7 @@
         <p class="font-work_sans pr-12">
           {{ stakva.tekst }}
         </p>
-        <button class="submit-button-blog text-sky-800 font-bold text-2xl tracking-wider">
+        <button class="submit-button-blog text-sky-800 font-bold text-2xl tracking-wider"  @click="idiBlogArtikal(stakva.putanja)">
           {{stakva.dugme}}
         </button>
       </div>
@@ -311,7 +311,8 @@ const configGuma2 = {
 };
 const dialog = ref(false);
 const props = defineProps({
-  id: String
+  id: String,
+  idBlog: String
 });
 const malaAkcijaPrikaz = ref(false);
 const kartaSirina = ref(jeTelefon() ? 350 : 500);
@@ -338,7 +339,7 @@ onMounted(async () => {
   //////
 
   const blogSlike = import.meta.glob('../assets/Slike/Blog/*.*');
-  let idBlog = 0,rbrBlogCsv,naslovBlogCsv,tekstBlogCsv,dugmeBlogCsv,naslovnaBlogCsv;
+  let idBlog = 0,rbrBlogCsv,naslovBlogCsv,tekstBlogCsv,dugmeBlogCsv,naslovnaBlogCsv,putanjaBlogCsv;
   
   for (const pathBlog in blogSlike) {
     const urlBlog = await blogSlike[pathBlog]();
@@ -346,15 +347,14 @@ onMounted(async () => {
     naslovBlogCsv = redoviBlog[idBlog + 1].split(";")[1];
     tekstBlogCsv = redoviBlog[idBlog + 1].split(";")[2];
     dugmeBlogCsv = redoviBlog[idBlog + 1].split(";")[3];
-    naslovnaBlogCsv = redoviBlog[idBlog + 1].split(";")[4];
-    if (rbrBlogCsv == (idBlog + 1)){
+    putanjaBlogCsv = redoviBlog[idBlog + 1].split(";")[4];
+    naslovnaBlogCsv = redoviBlog[idBlog + 1].split(";")[5];
+   
       if (naslovnaBlogCsv.trim() == "D"){
-        blog.value.push({ url: urlBlog.default, id: idBlog, naslov: naslovBlogCsv, tekst: tekstBlogCsv, dugme: dugmeBlogCsv});
+        blog.value.push({ url: urlBlog.default, id: idBlog, naslov: naslovBlogCsv, tekst: tekstBlogCsv, dugme: dugmeBlogCsv, putanja: putanjaBlogCsv});
       }
       ++idBlog;
-    }
-    else{console.log("rbrBlogCsv = " + rbrBlogCsv + "idBlog = " + idBlog);
-    }
+    
   }
 
   /////////////////////////
@@ -460,6 +460,10 @@ function NasRad(){
   function Kontaktiraj(){
       router.push({name: "Kontakt"});
     }
+
+  function idiBlogArtikal(putanja){
+    router.push({ name: 'BlogArtikal', params: { idBlog: putanja } });
+  }
 </script>
 
 <style>

@@ -693,7 +693,7 @@
     </div>
   </div>
   <div v-else>
-  <div
+    <!--<div
     class="ponuda"
      v-if="dialog"
   >
@@ -722,7 +722,47 @@
         </div>       
       </v-card>
     </v-fade-transition>
-  </div>
+    </div>-->
+    <div class="pa-8 text-center" v-if="sheet">
+       
+
+        <v-bottom-sheet v-model="sheet">
+        <v-card class="text-center" height="200">
+            <v-card-text>
+
+            <br>
+            <br>
+
+            <div>
+                
+                <v-card
+       
+                    append-icon="$close"
+                    class="mx-auto"
+                    elevation="16"
+                    max-width="40%"
+                    ref="dialog"
+                >
+                    <template v-slot:append>
+                    Zatvori
+                    <v-btn icon="$close" variant="text"  @click="sheet = !sheet"></v-btn>
+                    </template>
+
+                    <div class="text-center  grid place-items-center">
+                    <h2  style="font-size: 3rem;">
+                        Vaša ponuda je zaprimljena, očekujte odgovor uskoro!
+                    </h2>
+                    <v-img
+                        src="src/assets/poslato.gif"
+                        class="imaggg"
+                        ></v-img>
+                    </div>       
+                </v-card>
+            </div>
+            </v-card-text>
+        </v-card>
+        </v-bottom-sheet>
+    </div>
   </div>
 
   
@@ -739,6 +779,7 @@
   import Akcije from '../assets/TekstFajlovi/Akcije.csv?raw';
   import axios from 'axios';
   import { Carousel, Pagination, Navigation, Slide } from 'vue3-carousel';
+  import { shallowRef } from 'vue';
 
   const model = ref(null);
   const images = ref([]);
@@ -783,6 +824,7 @@
     pauseAutoplayOnHover: true,
 };
 const stavkeOLX = ref([]);
+const sheet = shallowRef(false);
 
   onMounted(async () => {
     const modules = import.meta.glob('../assets/Slike/Kategorije/*.*');
@@ -852,7 +894,7 @@ const stavkeOLX = ref([]);
         dimC.value = 150;
         tip.value = "";
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        dialog.value = true;
+        sheet.value = true;
         email.value = "";
         brtel.value = "";
         komunikacija.value = null;
@@ -874,7 +916,7 @@ const stavkeOLX = ref([]);
         rupa.value = null;
         promjer.value = null;
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        dialog.value = true;
+        sheet.value = true;
         email.value = "";
         brtel.value = "";
         komunikacija.value = null;
@@ -892,7 +934,7 @@ const stavkeOLX = ref([]);
             }
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        dialog.value = true;
+        sheet.value = true;
         email.value = "";
         brtel.value = "";
         komunikacija.value = null;
@@ -912,7 +954,7 @@ const stavkeOLX = ref([]);
         cmbMotoOprema.value = "Svi";
         cmbVelicina.value = "Svi";
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        dialog.value = true;
+        sheet.value = true;
         email.value = "";
         brtel.value = "";
         komunikacija.value = null;
@@ -932,7 +974,7 @@ const stavkeOLX = ref([]);
         brendovi.value = "Svi";
         cola.value = "Svi";
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        dialog.value = true;
+        sheet.value = true;
         email.value = "";
         brtel.value = "";
         komunikacija.value = null;
@@ -950,7 +992,7 @@ const stavkeOLX = ref([]);
             }
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        dialog.value = true;
+        sheet.value = true;
         email.value = "";
         brtel.value = "";
         komunikacija.value = null;
@@ -968,7 +1010,7 @@ const stavkeOLX = ref([]);
             }
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        dialog.value = true;
+        sheet.value = true;
         email.value = "";
         brtel.value = "";
         komunikacija.value = null;
@@ -986,7 +1028,7 @@ const stavkeOLX = ref([]);
             }
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        dialog.value = true;
+        sheet.value = true;
         email.value = "";
         brtel.value = "";
         komunikacija.value = null;
@@ -1004,7 +1046,7 @@ const stavkeOLX = ref([]);
             }
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        dialog.value = true;
+        sheet.value = true;
         email.value = "";
         brtel.value = "";
         komunikacija.value = null;
@@ -1022,7 +1064,7 @@ const stavkeOLX = ref([]);
             }
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        dialog.value = true;
+        sheet.value = true;
         email.value = "";
         brtel.value = "";
         komunikacija.value = null;
@@ -1040,7 +1082,7 @@ const stavkeOLX = ref([]);
             }
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        dialog.value = true;
+        sheet.value = true;
         email.value = "";
         brtel.value = "";
         komunikacija.value = null;
@@ -1051,7 +1093,7 @@ const stavkeOLX = ref([]);
   }
 
   function ZatvoriAkciju(){
-    dialog.value = false;
+    sheet.value = !sheet.value;
   }
 
 function jeTelefon(){

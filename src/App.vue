@@ -69,7 +69,7 @@
       >
         <li class="menu-button"><a @click="Pocetna()">Početna</a></li>
         <li class="menu-button"><a href="" @click="Ponuda()">Naša ponuda</a></li>
-        <li class="menu-button"><a href="" @click="Ponuda()">Blog</a></li>
+        <li class="menu-button"><a href="" @click="Blog()">Blog</a></li>
         <li class="menu-button"><a href="#work" @click="NasRad()" v-smooth-scroll>Poslovna jedinica Prijedor</a></li>
         <li class="menu-button"><a href="#about" v-smooth-scroll @click="Onama()">O nama</a></li>
         <li class="menu-button">
@@ -193,6 +193,10 @@ function Pocetna(){
 
 function Ponuda(){
   router.push({name: "Ponuda"});
+}
+
+function Blog(){
+  router.push({name: "Blog"});
 }
 
 function jeTelefon(){
