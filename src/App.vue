@@ -182,9 +182,9 @@ const router = useRouter();
    { title: 'O nama',  route: '/ONama' },
    { title: 'Kontakt',  route: '/Kontakt' }
   ];
-
-  const drawer = ref(false);
-  const group = ref(null);
+const currentWidth1 = window.innerWidth;
+const drawer = ref(false);
+const group = ref(null);
 
 
 function Pocetna(){
@@ -225,5 +225,14 @@ function jeTelefon(){
   function Kontakt(){
     router.push({name: "Kontakt"});
   }
+
+  window.addEventListener('resize', function() {
+    
+  const currentWidth = window.innerWidth;
+
+  if ((currentWidth1 <= 800 && currentWidth > 800) || (currentWidth1 > 800 && currentWidth <= 800)) {
+    location.reload();
+  } 
+});
 
 </script>

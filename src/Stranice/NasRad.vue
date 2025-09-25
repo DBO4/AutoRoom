@@ -52,6 +52,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 onMounted(async () => {
+    window.scrollTo(0, 0);
     for (const folder in slikeFolder) {
         const urlFolder = await slikeFolder[folder]();
         slike.value.push({ url: urlFolder.default});

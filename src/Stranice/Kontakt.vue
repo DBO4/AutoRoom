@@ -151,7 +151,7 @@
 </template>
 
 <script setup>
-    import { ref } from 'vue';
+    import {ref, onMounted} from 'vue';
     import axios from 'axios';
     const nap = ref("");
     const brtel = ref("");
@@ -175,6 +175,10 @@
         }
         else return false;
     }
+
+    onMounted(async() =>{
+        window.scrollTo(0, 0);
+    })
 
 
      function jeTelefon(){

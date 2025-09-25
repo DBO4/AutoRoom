@@ -150,6 +150,7 @@ const slikeFolder = import.meta.glob('../assets/Slike/klijenti/*.*');
 
 
 onMounted(async() =>{
+    window.scrollTo(0, 0);
     for (const folder in slikeFolder) {
         const urlFolder = await slikeFolder[folder]();
         slike.value.push({ url: urlFolder.default});

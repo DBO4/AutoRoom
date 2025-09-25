@@ -1,659 +1,692 @@
 <template>
     <div class="banner-5 py-5">
-        <div v-if ="jeTelefon()" class=" mx-7 pb-10 " style="border-radius: 54px; border-width: 15px; border-color:red; background-image: url('src/assets/tragovi.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
-            <div class="space-y-4 grid text-center place-items-center my-5">
-                <h4 class="heading3">***Pogledajte našu ponudu na OLX shopu***</h4>
+        <div v-if ="jeTelefon()" class=" mx-7 pb-10 " style="border-radius: 54px; border-width: 15px; border-color:red; background-image: url('src/assets/tragovi.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">   
+            <div v-if="loadingOLX">
+                <div class="lds-circle" style="display: flex; justify-content: center; align-items: center;">
+                    <div></div>
+                </div>
             </div>
-            <Carousel v-bind="configOLX">
-                <Slide v-for="stavka in stavkeOLX" :key="stavka.id" >
-                    <div class="carousel__item border-2 border-red-800 mx-2 bg-white"id="carousel" >
-                    <img :src="stavka.image" :alt="stavka.title" id="slika" style="max-height:270px; width: 500px; border-color: red; border-width: 5px;"/>  
-                    <div class="px-2 py-1">
-                        <div id="ime">{{ stavka.title }}</div>
-                        <div id="cijena" style=" color: gold; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: 600; font-size:x-large; background-color: crimson; text-align: center; border-radius: 15%;">{{ stavka.display_price }}</div>
-                        <div class ="align-center justify-center d-flex pa-4">
-                        <v-btn rounded="xl" size="small" @click="naruciOLX(stavka.id)" block>Naruči na OLX</v-btn>
+            <div v-else-if="greskaOLX">
+                <p>{{ error }}</p>
+            </div>
+            <div v-else>
+                <div class="space-y-4 grid text-center place-items-center my-5">
+                    <h4 class="heading3">***Pogledajte našu ponudu na OLX shopu***</h4>
+                </div>
+                <Carousel v-bind="configOLX">
+                    <Slide v-for="stavka in stavkeOLX" :key="stavka.id" >
+                        <div class="carousel__item border-2 border-red-800 mx-2 bg-white"id="carousel" >
+                        <img :src="stavka.image" :alt="stavka.title" id="slika" style="max-height:270px; width: 500px; border-color: red; border-width: 5px;"/>  
+                        <div class="px-2 py-1">
+                            <div id="ime">{{ stavka.title }}</div>
+                            <div id="cijena" style=" color: gold; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: 600; font-size:x-large; background-color: crimson; text-align: center; border-radius: 15%;">{{ stavka.display_price }}</div>
+                            <div class ="align-center justify-center d-flex pa-4">
+                            <v-btn rounded="xl" size="small" @click="naruciOLX(stavka.id)" block>Naruči na OLX</v-btn>
+                            </div>
                         </div>
-                    </div>
-                    </div>
-                </Slide>
-                <template #addons>
-                    <Navigation />
-                    <Pagination />
-                </template>
-            </Carousel>
+                        </div>
+                    </Slide>
+                    <template #addons>
+                        <Navigation />
+                    </template>
+                </Carousel>
+            </div>
         </div>
         <div v-else class=" px-15 mx-15 " style="border-radius: 54px; border-width: 15px; border-color:red; background-image: url('src/assets/tragovi.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
-            <div class="space-y-4 grid place-items-center my-5">
-                <h4 class="heading3">***Pogledajte našu ponudu na OLX shopu***</h4>
+            <div v-if="loadingOLX">
+                <div class="lds-circle" style="display: flex; justify-content: center; align-items: center;">
+                    <div></div>
+                </div>
             </div>
-            <Carousel v-bind="configOLX">
-                <Slide v-for="stavka in stavkeOLX" :key="stavka.id" >
-                    <div class="carousel__item border-2 border-red-800 mx-2 bg-white"id="carousel" >
-                    <img :src="stavka.image" :alt="stavka.title" id="slika" style="max-height:270px; width: 500px; border-color: red; border-width: 5px;"/>  
-                    <div class="px-2 py-1">
-                        <div id="ime">{{ stavka.title }}</div>
-                        <div id="cijena" style=" color: gold; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: 600; font-size:x-large; background-color: crimson; text-align: center; border-radius: 15%;">{{ stavka.display_price }}</div>
-                        <div class ="align-center justify-center d-flex pa-4">
-                        <v-btn rounded="xl" size="small" @click="naruciOLX(stavka.id)" block>Naruči na OLX</v-btn>
+            <div v-else-if="greskaOLX">
+                <p>{{ error }}</p>
+            </div>
+            <div v-else>
+                <div class="space-y-4 grid place-items-center my-5">
+                    <h4 class="heading3">***Pogledajte našu ponudu na OLX shopu***</h4>
+                </div>
+                <Carousel v-bind="configOLX">
+                    <Slide v-for="stavka in stavkeOLX" :key="stavka.id" >
+                        <div class="carousel__item border-2 border-red-800 mx-2 bg-white"id="carousel" >
+                        <img :src="stavka.image" :alt="stavka.title" id="slika" style="max-height:270px; width: 500px; border-color: red; border-width: 5px;"/>  
+                        <div class="px-2 py-1">
+                            <div id="ime">{{ stavka.title }}</div>
+                            <div id="cijena" style=" color: gold; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: 600; font-size:x-large; background-color: crimson; text-align: center; border-radius: 15%;">{{ stavka.display_price }}</div>
+                            <div class ="align-center justify-center d-flex pa-4">
+                            <v-btn rounded="xl" size="small" @click="naruciOLX(stavka.id)" block>Naruči na OLX</v-btn>
+                            </div>
                         </div>
-                    </div>
-                    </div>
-                </Slide>
-                <template #addons>
-                    <Navigation />
-                    <Pagination />
-                </template>
-            </Carousel>
+                        </div>
+                    </Slide>
+                    <template #addons>
+                        <Navigation />
+                        <Pagination />
+                    </template>
+                </Carousel>
+            </div>
         </div>
         <br></br>
         <div class="bg-white py-5 px-3" style="border-radius: 54px;">
             <div class="py-2" v-if="jeTelefon()">
-                <div class="space-y-4 grid place-items-center mt-5">
-                    <h3 class="heading3">Izaberite kategoriju</h3>
-                    <p class="font-work_sans text-gray-600 font-semibold leading-relaxed text-center pb-6">
-                        Samo dio uske selekcije kategorija naših proizvoda
-                    </p>
+                <div v-if="loadingKat">
+                    <div class="lds-circle" style="display: flex; justify-content: center; align-items: center;">
+                        <div></div>
+                    </div>
                 </div>
-                <div class="text-center">
-                    <v-sheet
-                        class="mx-auto"
-                        elevation="8"
-                        width="90%">
-                        
-                        <v-slide-group
-                        v-model="model"
-                        selected-class="bg-red"
-                        show-arrows>
+                <div v-else>
+                    <div class="space-y-4 grid place-items-center mt-5">
+                        <h3 class="heading3">Izaberite kategoriju</h3>
+                        <p class="font-work_sans text-gray-600 font-semibold leading-relaxed text-center pb-6">
+                            Samo dio uske selekcije kategorija naših proizvoda
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <v-sheet
+                            class="mx-auto"
+                            elevation="8"
+                            width="90%">
+                            
+                            <v-slide-group
+                            v-model="model"
+                            selected-class="bg-red"
+                            show-arrows>
 
-                            <v-slide-group-item
-                                v-for="n in images"
-                                :key="n.id"
-                                v-slot="{ isSelected, toggle, selectedClass }"
-                                >
+                                <v-slide-group-item
+                                    v-for="n in images"
+                                    :key="n.id"
+                                    v-slot="{ isSelected, toggle, selectedClass }"
+                                    >
 
-                                <v-card
-                                :class="['ma-4', selectedClass, 'container', 'py-6']"
-                                :color="isSelected ? 'red' : 'grey-lighten-2'"
-                                height="170"
-                                width="170"
-                                @click="toggle"
-                                >
-                                    <p class="text-h5 font-weight-black">{{n.ime}}</p>
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <img :src="n.url" :alt="n.id" id="slika"></img> 
-                                    </div>
-                                </v-card>
-                            </v-slide-group-item>
-                        </v-slide-group>
-                        <v-expand-transition>
-                            <v-sheet v-if="model != null">
-                                <div v-if="model == 0" class="pa-6">
-                                    <div class="d-flex fill-height align-center justify-center py-2">
-                                        <h4 class="text-h7">
-                                            Unesite podatke o gumama koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
-                                        </h4>
-                                    </div>
-                                    <v-expansion-panels class="px-2">
-                                        <v-expansion-panel title="Uputstvo za dimezije guma">
-                                            <v-expansion-panel-text>
-                                                <v-row no-gutters>
-                                                    <v-spacer></v-spacer>
-                                                    <v-col cols="12">
-                                                        <div class="flex">
-                                                            <v-img
-                                                            height="250"
-                                                            src="src\assets\Tire-Size.jpg"
-                                                            ></v-img>
-                                                        </div>
-                                                    </v-col>    
-                                                </v-row>
-                                            </v-expansion-panel-text>
-                                        </v-expansion-panel>
-                                        <v-expansion-panel
-                                            title="Šta možete očekivati od naše ponude?"
-                                            text="Možete očekivati brendove Matador, Pireli, Mischelin, Tigar Ling Long, Ćin Ćong, gume za aute, kamione, motore, tačke, kolica za bebe, informacije o načinima i vremenima isporuke bla bla bla">
-                                        </v-expansion-panel>
-                                    </v-expansion-panels>
-                                        <div class ="align-center grid place-items-center pt-6">
-                                            <v-number-input
-                                                :reverse="false"
-                                                controlVariant="default"
-                                                label="Dimenzija A"
-                                                :hideInput="false"
-                                                :inset="false"
-                                                v-model="dimA"
-                                                width="200"
-                                                :max="300"
-                                                :min="150"
-                                            ></v-number-input>
-                                            <v-number-input
-                                                :reverse="false"
-                                                controlVariant="default"
-                                                label="Dimenzija B"
-                                                :hideInput="false"
-                                                :inset="false"
-                                                v-model="dimB"
-                                                width="200"
-                                                :max="100"
-                                                :min="30"
-                                            ></v-number-input>
-                                            <v-number-input
-                                                :reverse="false"
-                                                controlVariant="default"
-                                                label="Dimenzija C"
-                                                :hideInput="false"
-                                                :inset="false"
-                                                width="200"
-                                                v-model="dimC"
-                                                :max="100"
-                                                :min="30"
-                                            ></v-number-input>
-                                            <v-radio-group inline label="Izaberite vrstu guma" v-model="tip" class="grid place-items-center">
-                                                <v-radio color="red" label="Zimske" value="Zimske"></v-radio>
-                                                <v-radio color="red" label="Ljetne" value="Ljetne"></v-radio>
-                                                <v-radio color="red" value="Cjelogodišnje" label="Cjelogodišnje"></v-radio>
-                                            </v-radio-group>                        
+                                    <v-card
+                                    :class="['ma-4', selectedClass, 'container', 'py-6']"
+                                    :color="isSelected ? 'red' : 'grey-lighten-2'"
+                                    height="170"
+                                    width="170"
+                                    @click="toggle"
+                                    >
+                                        <p class="text-h5 font-weight-black">{{n.ime}}</p>
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <img :src="n.url" :alt="n.id" id="slika"></img> 
                                         </div>
-                                </div>
-                                <div v-if="model == 1" class="pa-4">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Unesite podatke o felugama koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                    </v-card>
+                                </v-slide-group-item>
+                            </v-slide-group>
+                            <v-expand-transition>
+                                <v-sheet v-if="model != null">
+                                    <div v-if="model == 0" class="pa-6">
+                                        <div class="d-flex fill-height align-center justify-center py-2">
+                                            <h4 class="text-h7">
+                                                Unesite podatke o gumama koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h4>
+                                        </div>
+                                        <v-expansion-panels class="px-2">
+                                            <v-expansion-panel title="Uputstvo za dimezije guma">
+                                                <v-expansion-panel-text>
+                                                    <v-row no-gutters>
+                                                        <v-spacer></v-spacer>
+                                                        <v-col cols="12">
+                                                            <div class="flex">
+                                                                <v-img
+                                                                height="250"
+                                                                src="src\assets\Tire-Size.jpg"
+                                                                ></v-img>
+                                                            </div>
+                                                        </v-col>    
+                                                    </v-row>
+                                                </v-expansion-panel-text>
+                                            </v-expansion-panel>
+                                            <v-expansion-panel
+                                                title="Šta možete očekivati od naše ponude?"
+                                                text="Možete očekivati brendove Matador, Pireli, Mischelin, Tigar Ling Long, Ćin Ćong, gume za aute, kamione, motore, tačke, kolica za bebe, informacije o načinima i vremenima isporuke bla bla bla">
+                                            </v-expansion-panel>
+                                        </v-expansion-panels>
+                                            <div class ="align-center grid place-items-center pt-6">
+                                                <v-number-input
+                                                    :reverse="false"
+                                                    controlVariant="default"
+                                                    label="Dimenzija A"
+                                                    :hideInput="false"
+                                                    :inset="false"
+                                                    v-model="dimA"
+                                                    width="200"
+                                                    :max="300"
+                                                    :min="150"
+                                                ></v-number-input>
+                                                <v-number-input
+                                                    :reverse="false"
+                                                    controlVariant="default"
+                                                    label="Dimenzija B"
+                                                    :hideInput="false"
+                                                    :inset="false"
+                                                    v-model="dimB"
+                                                    width="200"
+                                                    :max="100"
+                                                    :min="30"
+                                                ></v-number-input>
+                                                <v-number-input
+                                                    :reverse="false"
+                                                    controlVariant="default"
+                                                    label="Dimenzija C"
+                                                    :hideInput="false"
+                                                    :inset="false"
+                                                    width="200"
+                                                    v-model="dimC"
+                                                    :max="100"
+                                                    :min="30"
+                                                ></v-number-input>
+                                                <v-radio-group inline label="Izaberite vrstu guma" v-model="tip" class="grid place-items-center">
+                                                    <v-radio color="red" label="Zimske" value="Zimske"></v-radio>
+                                                    <v-radio color="red" label="Ljetne" value="Ljetne"></v-radio>
+                                                    <v-radio color="red" value="Cjelogodišnje" label="Cjelogodišnje"></v-radio>
+                                                </v-radio-group>                        
+                                            </div>
+                                    </div>
+                                    <div v-if="model == 1" class="pa-4">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Unesite podatke o felugama koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                        <div class ="align-center grid place-items-center pt-6">
+                                            <v-combobox
+                                                v-model="brendovi"
+                                                :items="items"
+                                                label="Vozila"
+                                                width="250"
+                                            ></v-combobox>
+                                            <v-number-input
+                                                :reverse="false"
+                                                controlVariant="default"
+                                                label="Veličina feluge"
+                                                :hideInput="false"
+                                                :inset="false"
+                                                width="250"
+                                                v-model="cola"
+                                                :max="30"
+                                                :min="5"
+                                            ></v-number-input>
+                                            <v-number-input
+                                                :reverse="false"
+                                                controlVariant="default"
+                                                label="Centralna rupa"
+                                                :hideInput="false"
+                                                :inset="false"
+                                                width="250"
+                                                v-model="rupa"
+                                                :max="10"
+                                                :min="1"
+                                            ></v-number-input>
+                                            <v-number-input
+                                                :reverse="false"
+                                                controlVariant="default"
+                                                label="Promjer rupa"
+                                                :hideInput="false"
+                                                :inset="false"
+                                                width="250"
+                                                v-model="promjer"
+                                                :max="300"
+                                                :min="1"
+                                            ></v-number-input>
+                                        </div>
+                                    </div>
+                                    <div v-if="model == 2" class="pa-4">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Unesite podatke o kozmetici koja vas interesuje, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div v-if="model == 3" class="pa-4">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Unesite podatke o moto opremi koja vas interesuje, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                        <div class ="align-center grid place-items-center pt-6">
+                                            <v-combobox
+                                                v-model="cmbMotoOprema"
+                                                :items="stavkeMotoOprema"
+                                                label="Moto oprema"
+                                                width = "250"
+                                            ></v-combobox>
+                                            <v-combobox
+                                                v-model="cmbVelicina"
+                                                :items="stavkeVelicina"
+                                                label="Veličina"
+                                                width = "250"
+                                            ></v-combobox>
+                                        </div>
+                                    </div>
+                                    <div v-if="model == 4" class="pa-4">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Unesite podatke o ratkapnama koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                        <div class ="align-center grid place-items-center pt-6">
+                                            <v-combobox
+                                                v-model="brendovi"
+                                                :items="items"
+                                                label="Brendovi"
+                                                width = "250"
+                                            ></v-combobox>
+                                            <v-number-input
+                                                :reverse="false"
+                                                controlVariant="default"
+                                                label="Veličina ratkape"
+                                                :hideInput="false"
+                                                :inset="false"
+                                                width="250"
+                                                v-model="cola"
+                                                :max="30"
+                                                :min="5"
+                                            ></v-number-input>
+                                        </div>
+                                    </div>
+                                    <div v-if="model == 5" class="pa-4">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Unesite podatke o auto dijelovima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div v-if="model == 6" class="pa-4">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Unesite podatke o uljima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div v-if="model == 7" class="pa-4">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Unesite podatke o moto dijelovima ili uljima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div v-if="model == 8" class="pa-4">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Unesite podatke o akumulatorima koji vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div v-if="model == 9" class="pa-4">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Upišite šta vas interesuje od Quad i Off road programa, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div v-if="model == 10" class="pa-4">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Unesite podatke o svemu ostalom što niste pronašli i što vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="px-6 ">
+                                            <h3 class="text-h6" style="text-align: left;">
+                                                Dodatna napomena:
+                                            </h3>
+                                            <v-textarea v-model="nap" label="Ovde upišite sve dodatne detalje npr. brend koji favorizujete, specifičnu dimenziju koju niste našli, gume za druga vozila (osim automobila)..." variant="outlined"></v-textarea>
+                                        </div>
+                                        <h3 class="text-h6 px-4">
+                                            Izaberite vrstu komunikacije i popunite polja sa kontakt informacijama da Vas možemo kontaktirati
                                         </h3>
+                                        <v-radio-group inline v-model = "komunikacija" class="grid place-items-center px-5" v-on:change="onemoguci()">
+                                            <v-radio label="E-mail" value="email"></v-radio>
+                                            <v-radio label="Poziv" value="tel"></v-radio>
+                                            <v-radio label="Viber" value="viber"></v-radio>
+                                            <v-radio label="WhatsApp" value="wa"></v-radio>
+                                            <v-radio label="Telegram" value="telegram   "></v-radio>
+                                        </v-radio-group>
+                                        <div class ="grid place-items-center pt-6">
+                                            <v-text-field
+                                                v-model="email"
+                                                :rules="[rules.required, rules.email]"
+                                                label="E-mail"
+                                                :disabled=!onemoguci()
+                                                width = "250"
+                                                outline
+                                            ></v-text-field>
+                                            <v-text-field
+                                                v-model="brtel"
+                                                label="Broj telefona"
+                                                :disabled=onemoguci()
+                                                width = "250"
+                                            ></v-text-field>
+                                        </div>
+                                        <v-btn variant="flat" 
+                                            rounded="xl" 
+                                            size="x-large"
+                                            color="success"
+                                            class="ma-5"
+                                            @click="ZatraziPonudu()" >
+                                            Zatraži ponudu
+                                        </v-btn>
                                     </div>
-                                    <div class ="align-center grid place-items-center pt-6">
-                                        <v-combobox
-                                            v-model="brendovi"
-                                            :items="items"
-                                            label="Vozila"
-                                            width="250"
-                                        ></v-combobox>
-                                        <v-number-input
-                                            :reverse="false"
-                                            controlVariant="default"
-                                            label="Veličina feluge"
-                                            :hideInput="false"
-                                            :inset="false"
-                                            width="250"
-                                            v-model="cola"
-                                            :max="30"
-                                            :min="5"
-                                        ></v-number-input>
-                                        <v-number-input
-                                            :reverse="false"
-                                            controlVariant="default"
-                                            label="Centralna rupa"
-                                            :hideInput="false"
-                                            :inset="false"
-                                            width="250"
-                                            v-model="rupa"
-                                            :max="10"
-                                            :min="1"
-                                        ></v-number-input>
-                                        <v-number-input
-                                            :reverse="false"
-                                            controlVariant="default"
-                                            label="Promjer rupa"
-                                            :hideInput="false"
-                                            :inset="false"
-                                            width="250"
-                                            v-model="promjer"
-                                            :max="300"
-                                            :min="1"
-                                        ></v-number-input>
-                                    </div>
-                                </div>
-                                <div v-if="model == 2" class="pa-4">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Unesite podatke o kozmetici koja vas interesuje, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div v-if="model == 3" class="pa-4">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Unesite podatke o moto opremi koja vas interesuje, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
-                                        </h3>
-                                    </div>
-                                    <div class ="align-center grid place-items-center pt-6">
-                                        <v-combobox
-                                            v-model="cmbMotoOprema"
-                                            :items="stavkeMotoOprema"
-                                            label="Moto oprema"
-                                            width = "250"
-                                        ></v-combobox>
-                                        <v-combobox
-                                            v-model="cmbVelicina"
-                                            :items="stavkeVelicina"
-                                            label="Veličina"
-                                            width = "250"
-                                        ></v-combobox>
-                                    </div>
-                                </div>
-                                <div v-if="model == 4" class="pa-4">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Unesite podatke o ratkapnama koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
-                                        </h3>
-                                    </div>
-                                    <div class ="align-center grid place-items-center pt-6">
-                                        <v-combobox
-                                            v-model="brendovi"
-                                            :items="items"
-                                            label="Brendovi"
-                                            width = "250"
-                                        ></v-combobox>
-                                        <v-number-input
-                                            :reverse="false"
-                                            controlVariant="default"
-                                            label="Veličina ratkape"
-                                            :hideInput="false"
-                                            :inset="false"
-                                            width="250"
-                                            v-model="cola"
-                                            :max="30"
-                                            :min="5"
-                                        ></v-number-input>
-                                    </div>
-                                </div>
-                                <div v-if="model == 5" class="pa-4">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Unesite podatke o auto dijelovima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
-                                        </h3>
-                                    </div>
-                                </div>
-                                 <div v-if="model == 6" class="pa-4">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Unesite podatke o uljima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div v-if="model == 7" class="pa-4">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Unesite podatke o moto dijelovima ili uljima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div v-if="model == 8" class="pa-4">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Unesite podatke o akumulatorima koji vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div v-if="model == 9" class="pa-4">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Upišite šta vas interesuje od Quad i Off road programa, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div v-if="model == 10" class="pa-4">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Unesite podatke o svemu ostalom što niste pronašli i što vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="px-6 ">
-                                        <h3 class="text-h6" style="text-align: left;">
-                                            Dodatna napomena:
-                                        </h3>
-                                        <v-textarea v-model="nap" label="Ovde upišite sve dodatne detalje npr. brend koji favorizujete, specifičnu dimenziju koju niste našli, gume za druga vozila (osim automobila)..." variant="outlined"></v-textarea>
-                                    </div>
-                                    <h3 class="text-h6 px-4">
-                                        Izaberite vrstu komunikacije i popunite polja sa kontakt informacijama da Vas možemo kontaktirati
-                                    </h3>
-                                    <v-radio-group inline v-model = "komunikacija" class="grid place-items-center px-5" v-on:change="onemoguci()">
-                                        <v-radio label="E-mail" value="email"></v-radio>
-                                        <v-radio label="Poziv" value="tel"></v-radio>
-                                        <v-radio label="Viber" value="viber"></v-radio>
-                                        <v-radio label="WhatsApp" value="wa"></v-radio>
-                                        <v-radio label="Telegram" value="telegram   "></v-radio>
-                                    </v-radio-group>
-                                    <div class ="grid place-items-center pt-6">
-                                        <v-text-field
-                                            v-model="email"
-                                            :rules="[rules.required, rules.email]"
-                                            label="E-mail"
-                                            :disabled=!onemoguci()
-                                            width = "250"
-                                             outline
-                                        ></v-text-field>
-                                        <v-text-field
-                                            v-model="brtel"
-                                            label="Broj telefona"
-                                            :disabled=onemoguci()
-                                            width = "250"
-                                        ></v-text-field>
-                                    </div>
-                                    <v-btn variant="flat" 
-                                        rounded="xl" 
-                                        size="x-large"
-                                        color="success"
-                                        class="ma-5"
-                                        @click="ZatraziPonudu()" >
-                                        Zatraži ponudu
-                                    </v-btn>
-                                </div>
-                                
-                            </v-sheet>
-                        </v-expand-transition>
-                    </v-sheet>
+                                    
+                                </v-sheet>
+                            </v-expand-transition>
+                        </v-sheet>
 
+                    </div>
                 </div>
             </div>
             <div class="px-8 py-2" v-else>
-                <div class="space-y-4 grid place-items-center mt-5">
-                    <h3 class="heading3">Izaberite kategoriju</h3>
-                    <p class="font-work_sans text-gray-600 font-semibold leading-relaxed">
-                    Samo dio uske selekcije blalablalf,flsflbldsmblamlablablalbalbalbalblbalblabla
-                    </p>
+                <div v-if="loadingKat">
+                    <div class="lds-circle" style="display: flex; justify-content: center; align-items: center;">
+                        <div></div>
+                    </div>
                 </div>
-                <div class="text-center">
-                    <v-sheet
-                        class="mx-auto"
-                        elevation="8"
-                        width="80%">
-                        
-                        <v-slide-group
-                        v-model="model"
-                        selected-class="bg-red"
-                        show-arrows>
+                <div v-else>
+                    <div class="space-y-4 grid place-items-center mt-5">
+                        <h3 class="heading3">Izaberite kategoriju</h3>
+                        <p class="font-work_sans text-gray-600 font-semibold leading-relaxed">
+                        Samo dio uske selekcije blalablalf,flsflbldsmblamlablablalbalbalbalblbalblabla
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <v-sheet
+                            class="mx-auto"
+                            elevation="8"
+                            width="80%">
+                            
+                            <v-slide-group
+                            v-model="model"
+                            selected-class="bg-red"
+                            show-arrows>
 
-                            <v-slide-group-item
-                                v-for="n in images"
-                                :key="n.id"
-                                v-slot="{ isSelected, toggle, selectedClass }"
-                                >
+                                <v-slide-group-item
+                                    v-for="n in images"
+                                    :key="n.id"
+                                    v-slot="{ isSelected, toggle, selectedClass }"
+                                    >
 
-                                <v-card
-                                :class="['ma-4', selectedClass, 'container', 'py-6']"
-                                :color="isSelected ? 'red' : 'grey-lighten-2'"
-                                height="200"
-                                width="200"
-                                @click="toggle"
-                                >
-                                    <p class="text-h5 font-weight-black">{{n.ime}}</p>
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <img :src="n.url" :alt="n.id" id="slika"></img> 
+                                    <v-card
+                                    :class="['ma-4', selectedClass, 'container', 'py-6']"
+                                    :color="isSelected ? 'red' : 'grey-lighten-2'"
+                                    height="200"
+                                    width="200"
+                                    @click="toggle"
+                                    >
+                                        <p class="text-h5 font-weight-black">{{n.ime}}</p>
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <img :src="n.url" :alt="n.id" id="slika"></img> 
+                                        </div>
+                                    </v-card>
+                                </v-slide-group-item>
+                            </v-slide-group>
+                            <v-expand-transition>
+                                <v-sheet v-if="model != null">
+                                    <div v-if="model == 0" class="pa-6">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Unesite podatke o gumama koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                        <v-expansion-panels class="px-15">
+                                            <v-expansion-panel title="Uputstvo za dimezije guma">
+                                                <v-expansion-panel-text>
+                                                    <v-row no-gutters>
+                                                        <v-spacer></v-spacer>
+                                                        <v-col cols="12">
+                                                            <div class="flex">
+                                                                <v-img
+                                                                height="450"
+                                                                src="src\assets\Tire-Size.jpg"
+                                                                ></v-img>
+                                                            </div>
+                                                        </v-col>    
+                                                    </v-row>
+                                                </v-expansion-panel-text>
+                                            </v-expansion-panel>
+                                            <v-expansion-panel
+                                                title="Šta možete očekivati od naše ponude?"
+                                                text="Možete očekivati brendove Matador, Pireli, Mischelin, Tigar Ling Long, Ćin Ćong, gume za aute, kamione, motore, tačke, kolica za bebe, informacije o načinima i vremenima isporuke bla bla bla">
+                                            </v-expansion-panel>
+                                        </v-expansion-panels>
+                                            <div class ="align-center justify-center d-flex px-8 pt-6">
+                                                <v-number-input
+                                                    :reverse="false"
+                                                    controlVariant="default"
+                                                    label="Dimenzija A"
+                                                    :hideInput="false"
+                                                    :inset="false"
+                                                    v-model="dimA"
+                                                    width="200"
+                                                    class="ma-4"
+                                                    :max="300"
+                                                    :min="150"
+                                                ></v-number-input>
+                                                <v-number-input
+                                                    :reverse="false"
+                                                    controlVariant="default"
+                                                    label="Dimenzija B"
+                                                    :hideInput="false"
+                                                    :inset="false"
+                                                    v-model="dimB"
+                                                    width="200"
+                                                    class="ma-4"
+                                                    :max="100"
+                                                    :min="30"
+                                                ></v-number-input>
+                                                <v-number-input
+                                                    :reverse="false"
+                                                    controlVariant="default"
+                                                    label="Dimenzija C"
+                                                    :hideInput="false"
+                                                    :inset="false"
+                                                    width="200"
+                                                    v-model="dimC"
+                                                    class="ma-4"
+                                                    :max="100"
+                                                    :min="30"
+                                                ></v-number-input>                                            
+                                                <v-radio-group inline label="Izaberite vrstu guma" v-model="tip">
+                                                    <v-radio color="red" label="Zimske" value="Zimske"></v-radio>
+                                                    <v-radio color="red" label="Ljetne" value="Ljetne"></v-radio>
+                                                    <v-radio color="red" value="Cjelogodišnje" label="Cjelogodišnje"></v-radio>
+                                                </v-radio-group>                        
+                                            </div>
                                     </div>
-                                </v-card>
-                            </v-slide-group-item>
-                        </v-slide-group>
-                        <v-expand-transition>
-                            <v-sheet v-if="model != null">
-                                <div v-if="model == 0" class="pa-6">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Unesite podatke o gumama koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
-                                        </h3>
-                                    </div>
-                                    <v-expansion-panels class="px-15">
-                                        <v-expansion-panel title="Uputstvo za dimezije guma">
-                                            <v-expansion-panel-text>
-                                                <v-row no-gutters>
-                                                    <v-spacer></v-spacer>
-                                                    <v-col cols="12">
-                                                        <div class="flex">
-                                                            <v-img
-                                                            height="450"
-                                                            src="src\assets\Tire-Size.jpg"
-                                                            ></v-img>
-                                                        </div>
-                                                    </v-col>    
-                                                </v-row>
-                                            </v-expansion-panel-text>
-                                        </v-expansion-panel>
-                                        <v-expansion-panel
-                                            title="Šta možete očekivati od naše ponude?"
-                                            text="Možete očekivati brendove Matador, Pireli, Mischelin, Tigar Ling Long, Ćin Ćong, gume za aute, kamione, motore, tačke, kolica za bebe, informacije o načinima i vremenima isporuke bla bla bla">
-                                        </v-expansion-panel>
-                                    </v-expansion-panels>
-                                        <div class ="align-center justify-center d-flex px-8 pt-6">
+                                    <div v-if="model == 1" class="pa-4">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Unesite podatke o felugama koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                        <div class ="align-center justify-center d-flex px-8">
+                                            <v-combobox
+                                                v-model="brendovi"
+                                                :items="items"
+                                                label="Vozila"
+                                            ></v-combobox>
                                             <v-number-input
                                                 :reverse="false"
                                                 controlVariant="default"
-                                                label="Dimenzija A"
+                                                label="Veličina feluge"
                                                 :hideInput="false"
                                                 :inset="false"
-                                                v-model="dimA"
                                                 width="200"
+                                                v-model="cola"
+                                                class="ma-4"
+                                                :max="30"
+                                                :min="5"
+                                            ></v-number-input>
+                                            <v-number-input
+                                                :reverse="false"
+                                                controlVariant="default"
+                                                label="Centralna rupa"
+                                                :hideInput="false"
+                                                :inset="false"
+                                                width="200"
+                                                v-model="rupa"
+                                                class="ma-4"
+                                                :max="10"
+                                                :min="1"
+                                            ></v-number-input>
+                                            <v-number-input
+                                                :reverse="false"
+                                                controlVariant="default"
+                                                label="Promjer rupa"
+                                                :hideInput="false"
+                                                :inset="false"
+                                                width="200"
+                                                v-model="promjer"
                                                 class="ma-4"
                                                 :max="300"
-                                                :min="150"
+                                                :min="1"
                                             ></v-number-input>
-                                            <v-number-input
-                                                :reverse="false"
-                                                controlVariant="default"
-                                                label="Dimenzija B"
-                                                :hideInput="false"
-                                                :inset="false"
-                                                v-model="dimB"
-                                                width="200"
-                                                class="ma-4"
-                                                :max="100"
-                                                :min="30"
-                                            ></v-number-input>
-                                            <v-number-input
-                                                :reverse="false"
-                                                controlVariant="default"
-                                                label="Dimenzija C"
-                                                :hideInput="false"
-                                                :inset="false"
-                                                width="200"
-                                                v-model="dimC"
-                                                class="ma-4"
-                                                :max="100"
-                                                :min="30"
-                                            ></v-number-input>                                            
-                                            <v-radio-group inline label="Izaberite vrstu guma" v-model="tip">
-                                                <v-radio color="red" label="Zimske" value="Zimske"></v-radio>
-                                                <v-radio color="red" label="Ljetne" value="Ljetne"></v-radio>
-                                                <v-radio color="red" value="Cjelogodišnje" label="Cjelogodišnje"></v-radio>
-                                            </v-radio-group>                        
                                         </div>
-                                </div>
-                                <div v-if="model == 1" class="pa-4">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Unesite podatke o felugama koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                    </div>
+                                    <div v-if="model == 2" class="pa-4">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Unesite podatke o kozmetici koja vas interesuje, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div v-if="model == 3" class="pa-4">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Unesite podatke o moto opremi koja vas interesuje, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                        <div class ="align-center justify-center d-flex px-8">
+                                            <v-combobox
+                                                v-model="cmbMotoOprema"
+                                                :items="stavkeMotoOprema"
+                                                label="Moto oprema"
+                                                class = "ma-4"
+                                            ></v-combobox>
+                                            <v-combobox
+                                                v-model="cmbVelicina"
+                                                :items="stavkeVelicina"
+                                                label="Veličina"
+                                                class = "ma-4"
+                                            ></v-combobox>
+                                        </div>
+                                    </div>
+                                    <div v-if="model == 4" class="pa-4">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Unesite podatke o ratkapnama koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                        <div class ="align-center justify-center d-flex px-8">
+                                            <v-combobox
+                                                v-model="brendovi"
+                                                :items="items"
+                                                label="Brendovi"
+                                            ></v-combobox>
+                                            <v-number-input
+                                                :reverse="false"
+                                                controlVariant="default"
+                                                label="Veličina ratkape"
+                                                :hideInput="false"
+                                                :inset="false"
+                                                width="200"
+                                                v-model="cola"
+                                                class="ma-4"
+                                                :max="30"
+                                                :min="5"
+                                            ></v-number-input>
+                                        </div>
+                                    </div>
+                                    <div v-if="model == 5" class="pa-4">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Unesite podatke o auto dijelovima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div v-if="model == 6" class="pa-4">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Unesite podatke o auto-uljima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div v-if="model == 7" class="pa-4">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Unesite podatke o moto dijelovima ili uljima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div v-if="model == 8" class="pa-4">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Unesite podatke o akumulatorima koji vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div v-if="model == 9" class="pa-4">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Upišite šta vas interesuje od Quad i Off road programa, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div v-if="model == 10" class="pa-4">
+                                        <div class="d-flex fill-height align-center justify-center">
+                                            <h3 class="text-h6">
+                                                Unesite podatke o svemu ostalom što niste pronašli i što vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <div class="px-11 ">
+                                            <h3 class="text-h6" style="text-align: left;">
+                                                Dodatna napomena:
+                                            </h3>
+                                            <v-textarea v-model="nap" label="Ovde upišite sve dodatne detalje npr. brend koji favorizujete, specifičnu dimenziju koju niste našli, gume za druga vozila (osim automobila)..." variant="outlined"></v-textarea>
+                                        </div>
+                                        <h3 class="text-h5">
+                                            Izaberite vrstu komunikacije i popunite polja sa kontakt informacijama da Vas možemo kontaktirati
                                         </h3>
+                                        <v-radio-group inline v-model = "komunikacija" class="d-flex justify-center align-center" v-on:change="onemoguci()">
+                                            <v-radio label="E-mail" value="email"></v-radio>
+                                            <v-radio label="Poziv" value="tel"></v-radio>
+                                            <v-radio label="Viber" value="viber"></v-radio>
+                                            <v-radio label="WhatsApp" value="wa"></v-radio>
+                                            <v-radio label="Telegram" value="telegram   "></v-radio>
+                                        </v-radio-group>
+                                        <div class ="align-center justify-center d-flex px-8 pt-6">
+                                            <v-text-field
+                                                v-model="email"
+                                                :rules="[rules.required, rules.email]"
+                                                label="E-mail"
+                                                class="px-8"
+                                                :disabled=!onemoguci()
+                                                variant = "solo"
+                                            ></v-text-field>
+                                            <v-text-field
+                                                v-model="brtel"
+                                                label="Broj telefona"
+                                                class="px-8"
+                                                :disabled=onemoguci()
+                                            ></v-text-field>
+                                        </div>
+                                        <v-btn variant="flat" 
+                                            rounded="xl" 
+                                            size="x-large"
+                                            color="success"
+                                            class="ma-5"
+                                            @click="ZatraziPonudu()" >
+                                            Zatraži ponudu
+                                        </v-btn>
                                     </div>
-                                    <div class ="align-center justify-center d-flex px-8">
-                                        <v-combobox
-                                            v-model="brendovi"
-                                            :items="items"
-                                            label="Vozila"
-                                        ></v-combobox>
-                                        <v-number-input
-                                            :reverse="false"
-                                            controlVariant="default"
-                                            label="Veličina feluge"
-                                            :hideInput="false"
-                                            :inset="false"
-                                            width="200"
-                                            v-model="cola"
-                                            class="ma-4"
-                                            :max="30"
-                                            :min="5"
-                                        ></v-number-input>
-                                        <v-number-input
-                                            :reverse="false"
-                                            controlVariant="default"
-                                            label="Centralna rupa"
-                                            :hideInput="false"
-                                            :inset="false"
-                                            width="200"
-                                            v-model="rupa"
-                                            class="ma-4"
-                                            :max="10"
-                                            :min="1"
-                                        ></v-number-input>
-                                        <v-number-input
-                                            :reverse="false"
-                                            controlVariant="default"
-                                            label="Promjer rupa"
-                                            :hideInput="false"
-                                            :inset="false"
-                                            width="200"
-                                            v-model="promjer"
-                                            class="ma-4"
-                                            :max="300"
-                                            :min="1"
-                                        ></v-number-input>
-                                    </div>
-                                </div>
-                                <div v-if="model == 2" class="pa-4">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Unesite podatke o kozmetici koja vas interesuje, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div v-if="model == 3" class="pa-4">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Unesite podatke o moto opremi koja vas interesuje, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
-                                        </h3>
-                                    </div>
-                                    <div class ="align-center justify-center d-flex px-8">
-                                        <v-combobox
-                                            v-model="cmbMotoOprema"
-                                            :items="stavkeMotoOprema"
-                                            label="Moto oprema"
-                                            class = "ma-4"
-                                        ></v-combobox>
-                                        <v-combobox
-                                            v-model="cmbVelicina"
-                                            :items="stavkeVelicina"
-                                            label="Veličina"
-                                            class = "ma-4"
-                                        ></v-combobox>
-                                    </div>
-                                </div>
-                                <div v-if="model == 4" class="pa-4">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Unesite podatke o ratkapnama koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
-                                        </h3>
-                                    </div>
-                                    <div class ="align-center justify-center d-flex px-8">
-                                        <v-combobox
-                                            v-model="brendovi"
-                                            :items="items"
-                                            label="Brendovi"
-                                        ></v-combobox>
-                                        <v-number-input
-                                            :reverse="false"
-                                            controlVariant="default"
-                                            label="Veličina ratkape"
-                                            :hideInput="false"
-                                            :inset="false"
-                                            width="200"
-                                            v-model="cola"
-                                            class="ma-4"
-                                            :max="30"
-                                            :min="5"
-                                        ></v-number-input>
-                                    </div>
-                                </div>
-                                <div v-if="model == 5" class="pa-4">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Unesite podatke o auto dijelovima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
-                                        </h3>
-                                    </div>
-                                </div>
-                                 <div v-if="model == 6" class="pa-4">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Unesite podatke o auto-uljima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div v-if="model == 7" class="pa-4">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Unesite podatke o moto dijelovima ili uljima koje vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div v-if="model == 8" class="pa-4">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Unesite podatke o akumulatorima koji vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
-                                        </h3>
-                                    </div>
-                                </div>
-                                 <div v-if="model == 9" class="pa-4">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Upišite šta vas interesuje od Quad i Off road programa, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div v-if="model == 10" class="pa-4">
-                                    <div class="d-flex fill-height align-center justify-center">
-                                        <h3 class="text-h6">
-                                            Unesite podatke o svemu ostalom što niste pronašli i što vas interesuju, nakon toga kliknite na dugme "Zatraži ponudu" i u najbržem mogućem roku ćete dobiti ponudu odgovarajuću vašim potrebama
-                                        </h3>
-                                    </div>
-                                </div>
-                                
-                                <div>
-                                    <div class="px-11 ">
-                                        <h3 class="text-h6" style="text-align: left;">
-                                            Dodatna napomena:
-                                        </h3>
-                                        <v-textarea v-model="nap" label="Ovde upišite sve dodatne detalje npr. brend koji favorizujete, specifičnu dimenziju koju niste našli, gume za druga vozila (osim automobila)..." variant="outlined"></v-textarea>
-                                    </div>
-                                    <h3 class="text-h5">
-                                        Izaberite vrstu komunikacije i popunite polja sa kontakt informacijama da Vas možemo kontaktirati
-                                    </h3>
-                                    <v-radio-group inline v-model = "komunikacija" class="d-flex justify-center align-center" v-on:change="onemoguci()">
-                                        <v-radio label="E-mail" value="email"></v-radio>
-                                        <v-radio label="Poziv" value="tel"></v-radio>
-                                        <v-radio label="Viber" value="viber"></v-radio>
-                                        <v-radio label="WhatsApp" value="wa"></v-radio>
-                                        <v-radio label="Telegram" value="telegram   "></v-radio>
-                                    </v-radio-group>
-                                    <div class ="align-center justify-center d-flex px-8 pt-6">
-                                        <v-text-field
-                                            v-model="email"
-                                            :rules="[rules.required, rules.email]"
-                                            label="E-mail"
-                                            class="px-8"
-                                            :disabled=!onemoguci()
-                                            variant = "solo"
-                                        ></v-text-field>
-                                        <v-text-field
-                                            v-model="brtel"
-                                            label="Broj telefona"
-                                            class="px-8"
-                                            :disabled=onemoguci()
-                                        ></v-text-field>
-                                    </div>
-                                    <v-btn variant="flat" 
-                                        rounded="xl" 
-                                        size="x-large"
-                                        color="success"
-                                        class="ma-5"
-                                        @click="ZatraziPonudu()" >
-                                        Zatraži ponudu
-                                    </v-btn>
-                                </div>
-                                
-                            </v-sheet>
-                        </v-expand-transition>
-                    </v-sheet>
+                                    
+                                </v-sheet>
+                            </v-expand-transition>
+                        </v-sheet>
 
+                    </div>
                 </div>
             </div>
         </div>
@@ -661,7 +694,47 @@
     </div>
 
   <div v-if="jeTelefon()">
-    <div
+    <div class="text-center" v-if="sheet">
+       
+
+        <v-bottom-sheet v-model="sheet">
+        <v-card class="text-center" height="200">
+            <v-card-text>
+
+            <br>
+            <br>
+
+            <div>
+                
+                <v-card
+       
+                    append-icon="$close"
+                    class="mx-auto"
+                    elevation="16"
+                    max-width="90%"
+                    ref="dialog"
+                >
+                    <template v-slot:append>
+                    Zatvori
+                    <v-btn icon="$close" variant="text"  @click="sheet = !sheet"></v-btn>
+                    </template>
+
+                    <div class="text-center  grid place-items-center">
+                    <h2  style="font-size: 3rem;">
+                        Vaša ponuda je zaprimljena, očekujte odgovor uskoro!
+                    </h2>
+                    <v-img
+                        src="src/assets/poslato.gif"
+                        class="imaggg"
+                        ></v-img>
+                    </div>       
+                </v-card>
+            </div>
+            </v-card-text>
+        </v-card>
+        </v-bottom-sheet>
+    </div>
+    <!--<div
         class="ponuda pt-20"
         v-if="dialog"
     >
@@ -690,7 +763,7 @@
             </div>       
         </v-card>
         </v-fade-transition>
-    </div>
+    </div>-->
   </div>
   <div v-else>
     <!--<div
@@ -822,19 +895,24 @@
     autoplay: 4000,
     wrapAround: true,
     pauseAutoplayOnHover: true,
-};
-const stavkeOLX = ref([]);
-const sheet = shallowRef(false);
+  };
+  const stavkeOLX = ref([]);
+  const sheet = shallowRef(false);
+  const loadingOLX = ref(true);
+  const greskaOLX = ref(false);
+  const loadingKat = ref(true);
 
   onMounted(async () => {
+    window.scrollTo(0, 0);
     const modules = import.meta.glob('../assets/Slike/Kategorije/*.*');
     let idStavke = 0,nazivKatCsv,splitUrl;
     for (const path in modules) {
         let url = await modules[path]();
         splitUrl = url.default.split("?")[0];
-         nazivKatCsv = redoviKategorije[idStavke + 1].split(";")[1];
+        nazivKatCsv = redoviKategorije[idStavke + 1].split(";")[1];
         images.value.push({ url: splitUrl, id: ++idStavke, ime: nazivKatCsv});    
     }
+    loadingKat.value = false;
     if (props.id > 0){
         model.value = 8;
         const redoviAkcija = Akcije.split('\n');
@@ -856,7 +934,7 @@ const sheet = shallowRef(false);
             
         }  
     }
-    ucitajOLX();
+    await ucitajOLX();
   })
 
   function onemoguci(){
@@ -1092,10 +1170,6 @@ const sheet = shallowRef(false);
     
   }
 
-  function ZatvoriAkciju(){
-    sheet.value = !sheet.value;
-  }
-
 function jeTelefon(){
    /*if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
      return true
@@ -1107,17 +1181,24 @@ function jeTelefon(){
   else return true;
 }
 
-function ucitajOLX(){
+async function ucitajOLX(){
     var i;
-    axios
-    .get("http://localhost:3000/API/OLX.php")
-    .then(response => {
-        //console.log(response.data.data);
-        for (const OLXdata in response.data.data) {
-            i = response.data.data[OLXdata];
-            stavkeOLX.value.push({image: i.image, id: i.id, title: i.title, display_price: i.display_price});
-        }
-    });
+    try{
+        await axios
+        .get("http://localhost:3000/API/OLX.php")
+        .then(response => {
+            for (const OLXdata in response.data.data) {
+                i = response.data.data[OLXdata];
+                stavkeOLX.value.push({image: i.image, id: i.id, title: i.title, display_price: i.display_price});
+            }
+        });
+    } 
+    catch (error){
+        greskaOLX.value = "Greška: " + error;
+    }
+    finally {
+        loadingOLX.value = false;
+    }
 }
 
 function naruciOLX(id){
@@ -1152,4 +1233,39 @@ function naruciOLX(id){
   background-color: transparent;
    width: 50%;
 }
+
+.lds-circle,
+.lds-circle div {
+  box-sizing: border-box;
+}
+.lds-circle {
+  display: inline-block;
+  transform: translateZ(1px);
+}
+.lds-circle > div {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  background: #ff0202;
+  border-radius: 50%;
+  animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+@keyframes lds-circle {
+  0%, 100% {
+    animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+  }
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(1800deg);
+    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+  }
+  100% {
+    transform: rotateY(3600deg);
+  }
+}
+
+
 </style>
