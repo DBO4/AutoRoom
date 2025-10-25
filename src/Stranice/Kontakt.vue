@@ -247,9 +247,9 @@
             alert("Polje <Broj Telefona> je prazno");
             return;
         }
-
+        console.log(process.env.BEKEND);
         axios
-        .get("http://localhost:3000/API/Kontakt.php?email=" + email.value + "&brtel=" + brtel.value + "&kanal=" + komunikacija.value + "&nap=" + nap.value )
+        .get( import.meta.env.BEKEND + "/API/Kontakt.php?email=" + email.value + "&brtel=" + brtel.value + "&kanal=" + komunikacija.value + "&nap=" + nap.value )
         .then(function (response) {
             if (response.data.error) {
             console.log(response.data.message);

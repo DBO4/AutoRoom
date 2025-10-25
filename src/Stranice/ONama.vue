@@ -75,6 +75,17 @@ Vodjeni entuzijazmom za poslom, cilj i vizija je da se i dalje napreduje u svim 
 
        <div style="background-color: white;" :class="[$vuetify.display.mobile ? 'ma-2 pt-3 pa-2 rounded-xl outline' : 'ma-5 pa-5 rounded-xl outline']">
         <div :style=" $vuetify.display.mobile ? 'font-size: 2rem; font-weight: bolder;' : 'font-size: 4rem; font-weight: bolder;'" class = "text-black align-center text-center grid place-items-center pa-5">Naši partneri</div>
+        
+        <v-row class="mt--20">
+    <v-col cols="12">
+      <ul class="brand-style-2" style="background-color: white;">
+        <li v-for="(brand, i) in slike" :key="i">
+          <img :src="brand.src" alt="Logo Images" @click="OtvoriSajt(brand.link)"  style="max-height:270px; width: fit-content; border-width: 5px;"/>
+        </li>
+      </ul>
+    </v-col>
+  </v-row>
+<!--
         <Carousel v-bind="configAkcije">
             <Slide v-for="image in slike" >
                 <div class="carousel__item mx-2 bg-white"id="carousel" >
@@ -85,9 +96,11 @@ Vodjeni entuzijazmom za poslom, cilj i vizija je da se i dalje napreduje u svim 
                 <Navigation />
                 <Pagination />
             </template>
-        </Carousel>
+        </Carousel>-->
     </div>
 
+
+    
 
      <br></br><br></br>
 
@@ -137,6 +150,7 @@ const configAkcije = reactive({
   pauseAutoplayOnHover: true,
 });
 
+
   function jeTelefon(){
    /*if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
      return true
@@ -177,7 +191,7 @@ onMounted(async() =>{
 
     for (const folder in slikeFolder) {
         const urlFolder = await slikeFolder[folder]();
-        slike.value.push({ url: urlFolder.default});
+        slike.value.push({ src: urlFolder.default, url: urlFolder.default, link: urlFolder.default});
     }
 });
 
@@ -213,5 +227,71 @@ window.addEventListener('resize', function() {
   } 
 });
 
+function OtvoriSajt(link){
+    let ime = link.split("/"), ekstenzije = ime[ime.length - 1].split(".");
 
+    window.open("https://" + (ime[ime.length - 1]).replace("."+(ekstenzije[ekstenzije.length - 1]),""));
+}
 </script>
+
+<style lang="scss" scoped>
+$large-mobile: 'only screen and (max-width: 599px)';
+$md-layout:'only screen and (min-width: 768px) and (max-width: 991px)';
+$sm-layout:'only screen and (max-width: 767px)';
+$lg-layout: 'only screen and (min-width: 992px) and (max-width: 1263px)';
+
+ul {
+    &.brand-style-2 {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        @media #{$large-mobile} {
+            margin: 0 -15px;
+        }
+        li {
+            padding: 25px;
+            flex-basis: 20%;
+            text-align: center;
+            @media #{$sm-layout} {
+                flex-basis: 33.33%;
+                padding: 17px 10px;
+            }
+            @media #{$large-mobile} {
+                flex-basis: 33.33%;
+                padding: 0 15px;
+                margin-bottom: 16px;
+            }
+        }
+        img {
+            opacity: 0.8;
+            transition: 0.3s;
+            max-height: 110px;
+            max-width: 150px;
+            filter: grayscale(1);
+            cursor: pointer;
+            @media #{$lg-layout} {
+                max-width: 129px;
+            }
+            @media #{$md-layout} {
+                max-height: 79px;
+            }
+            @media #{$sm-layout} {
+                max-height: 60px;
+                max-width: 90px;
+            }
+            @media #{$large-mobile} {
+                max-height: initial;
+            }
+            &:hover {
+                transform: scale(1.1);
+                opacity: 1;
+                filter: grayscale(0);
+            }
+        }
+    }
+}
+</style>

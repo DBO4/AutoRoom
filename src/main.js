@@ -1,25 +1,13 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import Ponuda from './Stranice/Ponuda.vue'
 import './index.css'
 import VueSmoothScroll from 'vue3-smooth-scroll'
 import { createRouter, createWebHistory } from 'vue-router';
-import Pocetna from './Stranice/Pocetna.vue';
 import { createVuetify } from 'vuetify';
 import "vuetify/styles";
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
-import SvgIcon from '@jamescoyle/vue-icon';
-import { mdiAccount } from '@mdi/js';
 import '@mdi/font/css/materialdesignicons.css';
-import NasRad from './Stranice/NasRad.vue';
-import ONama from './Stranice/ONama.vue';
-import Kontakt from './Stranice/Kontakt.vue';
-import Blog from './Stranice/Blog.vue';
-import BlogArtikal from './Stranice/BlogArtikal.vue';
-import Naruci from './Stranice/Naruci.vue';
-import UsloviNarudzbe from './Stranice/UsloviNarudzbe.vue';
-import NemaStranice from './Stranice/NemaStranice.vue';
 
 const vuetify = createVuetify({
   components,
@@ -27,17 +15,17 @@ const vuetify = createVuetify({
 })
 
 const routes = [
-    {path: "/", name: "Pocetna", component: Pocetna},
-    {path: "/Ponuda", name: "Ponuda", component: Ponuda},
-    {path: "/Ponuda/Akcija/:id", name: "PonudaAkcija", component: Ponuda, props: true},
-    {path: "/PJPrijedor", name: "NasRad", component: NasRad},
-    {path: "/ONama", name: "ONama", component: ONama},
-    {path: "/Kontakt", name: "Kontakt", component: Kontakt},
-    {path: "/Blog", name: "Blog", component: Blog},
-    {path: "/Blog/:idBlog", name: "BlogArtikal", component: BlogArtikal, props: true},
-    {path: "/Narudzba/Akcija/:id" , name: "Naruci", component: Naruci, props: true},
-    {path: "/Narudzba/UsloviNarudzbe" , name: "UsloviNarudzbe", component: UsloviNarudzbe},
-    {path: '/:pathMatch(.*)*', name: 'NemaStranice', component: NemaStranice}
+    {path: "/", name: "Pocetna", component: () => import('./Stranice/Pocetna.vue')},
+    {path: "/Ponuda", name: "Ponuda", component: () => import('./Stranice/Ponuda.vue')},
+    {path: "/Ponuda/Akcija/:id", name: "PonudaAkcija",  component: () => import('./Stranice/Ponuda.vue'), props: true},
+    {path: "/PJPrijedor", name: "NasRad", component: () => import('./Stranice/NasRad.vue')},
+    {path: "/ONama", name: "ONama", component: () => import('./Stranice/ONama.vue')},
+    {path: "/Kontakt", name: "Kontakt", component: () => import('./Stranice/Kontakt.vue')},
+    {path: "/Blog", name: "Blog", component: () => import('./Stranice/Blog.vue')},
+    {path: "/Blog/:idBlog", name: "BlogArtikal", component: () => import('./Stranice/BlogArtikal.vue'), props: true},
+    {path: "/Narudzba/Akcija/:id" , name: "Naruci", component: () => import('./Stranice/Naruci.vue'), props: true},
+    {path: "/Narudzba/UsloviNarudzbe" , name: "UsloviNarudzbe", component: () => import('./Stranice/UsloviNarudzbe.vue')},
+    {path: '/:pathMatch(.*)*', name: 'NemaStranice', component: () => import('./Stranice/NemaStranice.vue')}
 ]
 
 const router = createRouter({

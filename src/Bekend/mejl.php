@@ -16,6 +16,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+$env = parse_ini_file('.ENV');
 
 //echo "AAAAAAAAAA";
 //Import PHPMailer classes into the global namespace
@@ -39,14 +40,14 @@ try {
     $mail->isSMTP();                                            
     $mail->Host       = 'smtp.gmail.com';                     
     $mail->SMTPAuth   = true;                                   
-    $mail->Username   = 'darioborisevic@gmail.com';                     
-    $mail->Password   = 'sedu eoma kacm bjmk';                               
+    $mail->Username   = $env["MEJL"]; 
+    $mail->Password   = $env["SIFRA"];                               
     $mail->SMTPSecure = "tls";         
     $mail->Port       = 587;       
 
 
     //$mail->addAddress($email, $ime);     //Add a recipient
-    $mail->addAddress("darioborisevic@gmail.com");               //Name is optional
+    $mail->addAddress($env["PRIMALAC"]);               //Name is optional
     //$mail->addReplyTo('info@example.com', 'Information');
     //$mail->addCC('cc@example.com');
     //$mail->addBCC('bcc@example.com');
